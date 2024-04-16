@@ -142,7 +142,7 @@ alias act="$HOME/programs/act/bin/act"
 export UTIL_PATH="$HOME/dotfiles/util"
 
 # Deepl
-alias deepl="zsh $UTIL_PATH/deepl.sh"
+alias deepl="zsh $UTIL_PATH/deepl.zsh"
 
 # open
 alias open="bash $UTIL_PATH/open.sh"
