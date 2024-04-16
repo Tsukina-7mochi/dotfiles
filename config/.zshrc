@@ -1,3 +1,10 @@
+# dotenv
+if [ -f "$HOME/.set_env.sh" ]; then
+    . "$HOME/.set_env.sh"
+fi
+
+
+
 # History file
 HISTFILE="$HOME/.histfile"
 HISTSIZE=1000
@@ -25,7 +32,7 @@ compinit
 
 
 # Prompt
-PS1='%B%F{green}%n@%m%f %F{blue}%~%f%b$ '
+PS1='%B%F{blue}%n@%m%f %F{cyan}%~%f%b$ '
 
 
 
@@ -62,13 +69,6 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     }
     zle -N zle-line-init
     zle -N zle-line-finish
-fi
-
-
-
-# dotenv
-if [ -f "$HOME/.env" ]; then
-    eval "$(cat "$HOME/.env" <(echo) <(declare -x))"
 fi
 
 
