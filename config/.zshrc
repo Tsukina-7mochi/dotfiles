@@ -163,6 +163,10 @@ else
 	bash "$UTIL_PATH/checkupdates.sh"
 fi
 
+# powerlevel10k
+source "$HOME/.p10k.zsh"
+source "$HOME/programs/powerlevel10k/powerlevel10k.zsh-theme"
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
     . "$HOME/google-cloud-sdk/path.zsh.inc"

@@ -24,4 +24,5 @@ function link_config() {
 }
 
 link_config .zshrc
-link_config .tmux.conf .tmux.conf
+link_config .tmux.conf
+link_config .p10k.zsh
