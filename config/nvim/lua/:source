@@ -1,0 +1,6 @@
+local set_keymap = vim.api.nvim_set_keymap
+
+set_keymap("i", "jj", "<ESC>", { noremap=true, silent=true })
+set_keymap("n", "<Enter>", "O<ESC>", {})
+set_keymap("n", "<S-Enter>", "O<ESC>", {})
+

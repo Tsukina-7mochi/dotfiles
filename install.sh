@@ -26,3 +26,6 @@ function link_config() {
 link_config .zshrc
 link_config .tmux.conf
 link_config .p10k.zsh
+link_config .vimrc
+link_config nvim .config
+
