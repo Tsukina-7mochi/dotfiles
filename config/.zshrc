@@ -123,9 +123,6 @@ alias delichon-update='deno cache https://raw.githubusercontent.com/Tsukina-7moc
 # golang
 export PATH="$PATH:/usr/local/go/bin"
 
-# thefuck
-eval $(thefuck --alias)
-
 # zoxide
 alias cd="z"
 eval "$(zoxide init zsh)"
@@ -136,6 +133,8 @@ alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
 # act (GitHub Actions)
 alias act="$HOME/programs/act/bin/act"
 
+# neovim
+alias vim="nvim"
 
 
 # Utilities
