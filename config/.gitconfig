@@ -1,0 +1,12 @@
+[alias]
+	st = status
+	cm = commit
+	sw = switch
+	br = branch
+[user]
+	email = Tsukina7mochi@gmail.com
+	name = Tsukina-7mochi
+[init]
+	defaultBranch = main
+[core]
+	editor = vim

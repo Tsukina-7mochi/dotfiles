@@ -27,5 +27,6 @@ link_config .zshrc
 link_config .tmux.conf
 link_config .p10k.zsh
 link_config .vimrc
+link_config .gitconfig
 link_config nvim .config
 
