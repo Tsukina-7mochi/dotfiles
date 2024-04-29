@@ -34,23 +34,27 @@ require("lazy").setup({
 -- setup nvim-cmp
 local cmp = require("cmp")
 local map = cmp.mapping
+local has_words_before = function()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+end
 
 cmp.setup {
     mapping = map.preset.insert {
         ["<C-Space>"] = map.complete(),
         ["<CR>"] = map.confirm { select = false },
+        ["<C-K>"] = cmp.mapping(function()
+            vim.lsp.buf.signature_help()
+        end, { "i", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif vim.fn["vsnip#available"](1) == 1 then
-                feedkey("<Plug>(vsnip-expand-or-jump)", "")
             elseif has_words_before() then
                 cmp.complete()
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
         end, { "i", "s" }),
-
         ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item()
