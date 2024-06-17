@@ -1,4 +1,5 @@
 vim.opt["autochdir"] = true
+vim.opt["autoread"] = true
 vim.opt["clipboard"] = "unnamedplus"
 vim.opt["cursorline"] = true
 vim.opt["completeopt"] = { "menuone", "noinsert", "noselect" }
@@ -24,4 +25,3 @@ vim.opt["tabstop"] = 4
 
 vim.opt["scrolloff"] = 4
 vim.opt["sidescrolloff"] = 8
-
