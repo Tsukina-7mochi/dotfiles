@@ -17,16 +17,14 @@ function prompt_and_make_backup() {
 }
 
 function link_config() {
-    TARGET="$HOME/${2-$1}"
-
-    prompt_and_make_backup "$TARGET"
-    ln -svf "$(pwd)/config/$1" "$TARGET"
+    prompt_and_make_backup "$2"
+    ln -svf "$(pwd)/config/$1" "$2"
 }
 
-link_config .zshrc
-link_config .tmux.conf
-link_config .p10k.zsh
-link_config .vimrc
-link_config .gitconfig
-link_config nvim .config
+link_config .zshrc "$HOME/.zshrc"
+link_config .tmux.conf "$HOME/.tmux.conf"
+link_config .p10k.zsh "$HOME/.p10k.zsh"
+link_config .vimrc "$HOME/.vimrc"
+link_config .gitconfig "$HOME/.gitconfig"
+link_config nvim "$HOME/.config/nvim"
 
