@@ -82,10 +82,12 @@ local exa_ignore_paths="node_modules|.git|.cache"
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='exa --git'
-    alias ll='exa --git -l'
-    alias la='exa --git -al'
-    alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
+    if [ -x "$(command -v exa)" ]; then
+        alias ls='exa --git'
+        alias ll='exa --git -l'
+        alias la='exa --git -al'
+        alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
+    fi
 
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -124,8 +126,10 @@ alias delichon-update='deno cache https://raw.githubusercontent.com/Tsukina-7moc
 export PATH="$PATH:/usr/local/go/bin"
 
 # zoxide
-alias cd="z"
-eval "$(zoxide init zsh)"
+if [ -x "$(command -v z)"]; then
+    alias cd="z"
+    eval "$(zoxide init zsh)"
+fi
 
 # clip.exe
 alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
