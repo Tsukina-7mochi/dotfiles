@@ -54,8 +54,8 @@ function echo_bold() {
 
 function update_registories_and_packages() {
     if [ -n "$(command -v "brew")" ]; then
-        sudo brew update
-        sudo brew upgrade
+        brew update
+        brew upgrade
     elif [ -n "$(command -v "apt")" ]; then
         sudo apt update
         sudo apt upgrade -y
@@ -69,7 +69,7 @@ function update_registories_and_packages() {
 
 function install_system_package_manager() {
     if [ -n "$(command -v "brew")" ]; then
-        sudo brew install $@
+        brew install $@
     elif [ -n "$(command -v "apt")" ]; then
         sudo apt install -y $@
     elif [ -n "$(command -v "pacman")" ]; then
