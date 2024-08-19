@@ -81,7 +81,7 @@ local exa_ignore_paths="node_modules|.git|.cache"
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     if [ -x "$(command -v exa)" ]; then
         alias ls='exa --git'
         alias ll='exa --git -l'
@@ -100,7 +100,9 @@ fi
 # Pyenv
 PYENV_ROOT="$HOME/.pyenv"
 PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+if [ -x "$(command -v exa)" ]; then
+    eval "$(pyenv init --path)"
+fi
 
 # Rye
 PATH="$PATH:/home/ts7m/.rye/shims"
@@ -126,7 +128,7 @@ alias delichon-update='deno cache https://raw.githubusercontent.com/Tsukina-7moc
 export PATH="$PATH:/usr/local/go/bin"
 
 # zoxide
-if [ -x "$(command -v z)"]; then
+if [ -x "$(command -v z)" ]; then
     alias cd="z"
     eval "$(zoxide init zsh)"
 fi
@@ -153,7 +155,7 @@ alias open="bash $UTIL_PATH/open.sh"
 
 
 # Start-up
-if [ -z "$TMUX" ]; then
+if [ -z "$TMUX" ] && [ -x "$(command -v z)" ]; then
 	neofetch
 fi
 
