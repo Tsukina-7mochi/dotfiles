@@ -82,12 +82,6 @@ local exa_ignore_paths="node_modules|.git|.cache"
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    if [ -x "$(command -v exa)" ]; then
-        alias ls='exa --git'
-        alias ll='exa --git -l'
-        alias la='exa --git -al'
-        alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
-    fi
 
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -95,6 +89,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+fi
+
+if [ -x "$(command -v exa)" ]; then
+    alias ls='exa --git'
+    alias ll='exa --git -l'
+    alias la='exa --git -al'
+    alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
 fi
 
 # Homebrew
