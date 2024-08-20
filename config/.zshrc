@@ -112,7 +112,7 @@ fi
 # Pyenv
 PYENV_ROOT="$HOME/.pyenv"
 PATH="$PYENV_ROOT/bin:$PATH"
-if [ -x "$(command -v exa)" ]; then
+if [ -x "$(command -v pyenv)" ]; then
     eval "$(pyenv init --path)"
 fi
 
