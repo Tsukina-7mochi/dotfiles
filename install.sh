@@ -96,6 +96,7 @@ if [ "$SKIP_INSTALL" = "0" ]; then
     if [ ! -d "$HOME/.cargo" ]; then
         curl --proto "=https" --tlsv1.2 -sSf "https://sh.rustup.rs" | sh
     fi
+    cargo install exa zoxide
 
     #### poewrlevel10k
     if [ ! -d "$HOME/programs/powerlevel10k" ]; then
