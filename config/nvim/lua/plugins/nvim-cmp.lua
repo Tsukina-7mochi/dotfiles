@@ -29,6 +29,7 @@ return {
                 { name = "buffer" },
                 { name = "path" },
                 { name = 'emmet_vim' },
+                { name = "lazydev" },
             }),
             mapping = map.preset.insert {
                 ["<C-Space>"] = map.complete(),
