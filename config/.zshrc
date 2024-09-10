@@ -139,6 +139,8 @@ alias delichon-update='deno cache https://raw.githubusercontent.com/Tsukina-7moc
 
 # golang
 export PATH="$PATH:/usr/local/go/bin"
+export GOPATH="$PATH:$HOME/go"
+export PATH="$PATH:$HOME/go/bin"
 
 # zoxide
 if [ -x "$(command -v z)" ]; then
