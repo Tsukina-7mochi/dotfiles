@@ -29,7 +29,6 @@ set_keymap("n", "<Leader>k", "<C-w>k", { noremap = true, silent = true })
 set_keymap("n", "<Leader>l", "<C-w>l", { noremap = true, silent = true })
 
 
-
 ---@param callback fun(...: string[] | nil)
 ---@param user_command { name: string, nargs: integer | string } | nil
 ---@param keymap { mode: string, key: string } | nil
