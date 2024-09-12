@@ -143,9 +143,9 @@ export GOPATH="$PATH:$HOME/go"
 export PATH="$PATH:$HOME/go/bin"
 
 # zoxide
-if [ -x "$(command -v z)" ]; then
+eval "$(zoxide init zsh)"
+if [ -n "$(command -v z)" ]; then
     alias cd="z"
-    eval "$(zoxide init zsh)"
 fi
 
 # clip.exe
