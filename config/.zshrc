@@ -170,7 +170,7 @@ alias open="bash $UTIL_PATH/open.sh"
 
 
 # Start-up
-if [ -z "$TMUX" ] && [ -x "$(command -v z)" ]; then
+if [ -z "$TMUX" ] && [ -x "$(command -v neofetch)" ]; then
 	neofetch
 fi
 
