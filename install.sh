@@ -88,7 +88,7 @@ fi
 if [ "$SKIP_INSTALL" = "0" ]; then
     echo_bold "Installing packages"
     install_system_package_manager "bzip2 cmake curl gcc gdb git gzip make sed sudo tar unzip wget"
-    install_system_package_manager "fzf jq lua micro neofetch neovim tldr tmux zsh"
+    install_system_package_manager "fzf jq lua micro neofetch neovim ripgrep tldr tmux zsh"
 
     echo "$HOME"
 

@@ -1,4 +1,3 @@
-vim.opt["autochdir"] = true
 vim.opt["autoread"] = true
 vim.opt["clipboard"] = "unnamedplus"
 vim.opt["cursorline"] = true
