@@ -58,6 +58,13 @@ return {
                     cwd = require("conform.util").root_file({ "deno.json", "deno.jsonc" }),
                     require_cwd = true,
                 },
+                ["biome"] = {
+                    command = "npx @biomejs/biome",
+                    stdin = false,
+                    args = { "check", "--write" },
+                    cwd = require("conform.util").root_file({ "biome.json" }),
+                    require_cwd = true,
+                },
             },
         }
     end
