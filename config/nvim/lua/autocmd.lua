@@ -37,6 +37,8 @@ auto_tab_width({
     css = 2,
     html = 2,
     javascript = 2,
+    javascriptreact = 2,
+    ["javascript.jsx"] = 2,
     json = 2,
     json5 = 2,
     jsonc = 2,
@@ -45,4 +47,6 @@ auto_tab_width({
     python = 4,
     scss = 2,
     typescript = 2,
+    typescriptreact = 2,
+    ["typescript.tsx"] = 2,
 })
