@@ -28,7 +28,7 @@ return {
         lspconfig.ts_ls.setup {}
 
         lspconfig.typos_lsp.setup {
-            cmd = { "/home/ts7m/programs/typos-lsp" },
+            cmd = { vim.fn.expand("$HOME/programs/typos-lsp/target/release/typos-lsp") },
         }
     end
 }
