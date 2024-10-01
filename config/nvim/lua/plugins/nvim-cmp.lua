@@ -1,5 +1,5 @@
 local has_words_before_cursor = function()
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
     local row_str = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1]
 
     if row_str == nil then return false end
@@ -17,6 +17,7 @@ return {
         "hrsh7th/cmp-cmdline",
         "mattn/emmet-vim",
         "dcampos/cmp-emmet-vim",
+        "folke/lazydev.nvim",
     },
     config = function()
         local cmp = require("cmp")
@@ -30,7 +31,7 @@ return {
                 { name = "buffer" },
                 { name = "path" },
                 { name = 'emmet_vim' },
-                { name = "lazydev" },
+                { name = "lazydev",  group_index = 0 },
             }),
             mapping = map.preset.insert {
                 ["<C-Space>"] = map.complete(),
