@@ -24,6 +24,25 @@ vim.api.nvim_create_user_command("Format", function()
     require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format document" })
 
+---@param name string
+---@param bufnr integer
+---@return boolean
+local is_formatter_available = function(name, bufnr)
+    return require("conform").get_formatter_info(name, bufnr).available
+end
+
+---@param bufnr integer
+---@return string[]
+local js_ts_formatter = function(bufnr)
+    if is_formatter_available("biome", bufnr) then
+        return { "biome" }
+    elseif is_formatter_available("deno", bufnr) then
+        return { "deno" }
+    end
+
+    return { "eslint", "prettier" }
+end
+
 return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
@@ -35,8 +54,13 @@ return {
                 return { timeout_ms = 500, lsp_fallback = true }
             end,
             formatters_by_ft = {
-                python = { { "venv.isort", "isort" }, { "venv.black", "black" } },
-                typescript = { { "deno", "biome", "eslint", "prettier" } },
+                python = { "venv.isort", "venv.black" },
+                javascript = js_ts_formatter,
+                javascriptreact = js_ts_formatter,
+                ["javascript.jsx"] = js_ts_formatter,
+                typescript = js_ts_formatter,
+                typescriptreact = js_ts_formatter,
+                ["typescript.jsx"] = js_ts_formatter,
             },
             formatters = {
                 ["venv.isort"] = {
@@ -59,9 +83,9 @@ return {
                     require_cwd = true,
                 },
                 ["biome"] = {
-                    command = "npx @biomejs/biome",
+                    command = "npx",
                     stdin = false,
-                    args = { "check", "--write" },
+                    args = { "@biomejs/biome", "check", "--write" },
                     cwd = require("conform.util").root_file({ "biome.json" }),
                     require_cwd = true,
                 },
