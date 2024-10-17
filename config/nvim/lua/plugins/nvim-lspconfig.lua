@@ -25,7 +25,10 @@ return {
 
         lspconfig.rust_analyzer.setup {}
 
-        lspconfig.ts_ls.setup {}
+        lspconfig.ts_ls.setup {
+            root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
+            single_file_support = false,
+        }
 
         lspconfig.typos_lsp.setup {
             cmd = { vim.fn.expand("$HOME/programs/typos-lsp/target/release/typos-lsp") },
