@@ -3,6 +3,7 @@
 	cm = commit
 	sw = switch
 	br = branch
+    force-push = push --force-with-lease --force-if-includes
 [user]
 	email = Tsukina7mochi@gmail.com
 	name = Tsukina-7mochi
