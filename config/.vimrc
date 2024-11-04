@@ -1,37 +1,40 @@
-" disable vi compatibility
-set nocompatible
+set autoread      " automatically reload file when changed
+set clipboard=unnamedplus " enable system clipboard
+set completeopt=menuone,noinsert,noselect " completion options
+set cursorline    " highlight current line
+set expandtab     " use spaces instead of tabs
+set incsearch     " enable incremental search
+set nocompatible  " disable vi compatibility
+set showcmd       " display inputting command
+set showtabline=2 " always show tabline
+set smartindent   " auto indent
+" set termguicolors " enable 24-bit RGB color in terminal
 
-" display inputting command
-set showcmd
+set number        " show line number
+set numberwidth=4 " set number width
 
-" enable syntax highlighting
-syntax enable
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case when searching if there is a capital letter
 
+set nowrap        " disable line wrap
+
+set shiftwidth=4  " set indent size
+set tabstop=4     " set tab size
+
+set scrolloff=4
+set sidescrolloff=8
+
+scriptencoding utf-8
+syntax enable  " enable syntax highlighting
 
 
 " key config
+let mapleader = "\<space>"
+
 inoremap <silent> jj <ESC>
-let mapleader = " i"
+nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch<Return>
+nnoremap <silent> <Leader>n :tabnext<Return>
+nnoremap <silent> <Leader>b :tabprevious<Return>
 
-
-
-" plugins
-
-" install vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-
-call plug#end()
-
-
-
-" color scheme
-colorscheme "catppuccin-frappe"
-
+nnoremap ; :
+vnoremap ; :
