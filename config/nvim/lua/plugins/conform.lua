@@ -85,7 +85,7 @@ return {
                 ["biome"] = {
                     command = "npx",
                     stdin = false,
-                    args = { "@biomejs/biome", "check", "--write" },
+                    args = { "@biomejs/biome", "check", "--write", "$FILENAME" },
                     cwd = require("conform.util").root_file({ "biome.json" }),
                     require_cwd = true,
                 },
