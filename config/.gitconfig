@@ -4,6 +4,10 @@
 	sw = switch
 	br = branch
     force-push = push --force-with-lease --force-if-includes
+    lg = log --oneline -n 10
+    llg = log --oneline --decorate
+    dlg = log --decorate
+    glg = log --oneline --graph --decorate
 [user]
 	email = Tsukina7mochi@gmail.com
 	name = Tsukina-7mochi
@@ -11,3 +15,8 @@
 	defaultBranch = main
 [core]
 	editor = nvim
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
