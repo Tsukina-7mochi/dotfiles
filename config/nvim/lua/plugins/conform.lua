@@ -51,7 +51,7 @@ return {
         require("conform").setup {
             format_on_save = function(bufnr)
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
-                return { timeout_ms = 500, lsp_fallback = true }
+                return { timeout_ms = 1000, lsp_fallback = true }
             end,
             formatters_by_ft = {
                 python = { "venv.isort", "venv.black" },
@@ -85,7 +85,7 @@ return {
                 ["biome"] = {
                     command = "npx",
                     stdin = false,
-                    args = { "@biomejs/biome", "check", "--write", "$FILENAME" },
+                    args = { "@biomejs/biome", "format", "--write", "--colors", "off", "--log-kind", "compact", "$FILENAME" },
                     cwd = require("conform.util").root_file({ "biome.json" }),
                     require_cwd = true,
                 },
