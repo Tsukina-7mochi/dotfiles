@@ -16,6 +16,7 @@ vim.opt["ignorecase"] = true
 vim.opt["smartcase"] = true
 
 vim.opt["number"] = true
+vim.opt["relativenumber"] = true
 vim.opt["numberwidth"] = 4
 
 vim.opt["wrap"] = false
