@@ -28,6 +28,24 @@ set_keymap("n", "<Leader>j", "<C-w>j", { noremap = true, silent = true })
 set_keymap("n", "<Leader>k", "<C-w>k", { noremap = true, silent = true })
 set_keymap("n", "<Leader>l", "<C-w>l", { noremap = true, silent = true })
 
+set_keymap("n", "<Leader>cc", ":Copilot toggle<Return>", { noremap = true, silent = true })
+set_keymap("n", "<Leader>ce", "", {
+    noremap = true,
+    silent = true,
+    callback = function()
+        vim.cmd(":Copilot enable<Return>")
+        print("Copilot enabled")
+    end
+})
+set_keymap("n", "<Leader>cd", "", {
+    noremap = true,
+    silent = true,
+    callback = function()
+        vim.cmd(":Copilot disable<Return>")
+        print("Copilot disabled")
+    end
+})
+
 
 ---@param callback fun(...: string[] | nil)
 ---@param user_command { name: string, nargs: integer | string } | nil

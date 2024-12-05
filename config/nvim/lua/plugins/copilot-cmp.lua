@@ -3,8 +3,8 @@ return {
     dependencies = {
         "zbirenbaum/copilot.lua",
     },
+    cmd = "Copilot",
     config = function()
         require("copilot_cmp").setup()
     end,
-    event = { "InsertEnter", "LspAttach" },
 }
