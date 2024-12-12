@@ -15,24 +15,6 @@ local auto_tab_width = function(tab_width)
     end
 end
 
----@param buffer integer
----@param callback fun(args: string[] | nil)
----@param user_command { name: string, nargs: integer | string } | nil
----@param keymap { mode: string, key: string } | nil
-local lsp_command_keymap = function(buffer, callback, user_command, keymap)
-    if user_command ~= nil then
-        vim.api.nvim_buf_create_user_command(buffer, user_command.name, function(opts)
-            callback(opts.fargs)
-        end, { nargs = user_command.nargs })
-    end
-
-    if keymap ~= nil then
-        vim.api.nvim_buf_set_keymap(buffer, keymap.mode, keymap.key, "", {
-            callback = callback
-        })
-    end
-end
-
 auto_tab_width({
     css = 2,
     html = 2,
