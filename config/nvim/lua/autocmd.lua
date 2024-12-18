@@ -43,6 +43,7 @@ auto_tab_width({
     typescript = 2,
     typescriptreact = 2,
     ["typescript.tsx"] = 2,
+    typespec = 2,
 })
 
 auto_filetype({
