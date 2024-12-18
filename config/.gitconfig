@@ -4,6 +4,7 @@
 	sw = switch
 	br = branch
     nb = checkout -b
+    pushnew = !"f(){ git push --set-upstream origin $(git branch --show-current); };f"
     force-push = push --force-with-lease --force-if-includes
     lg = log --oneline -n 10
     llg = log --oneline --decorate
