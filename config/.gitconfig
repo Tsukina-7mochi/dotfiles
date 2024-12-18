@@ -3,6 +3,7 @@
 	cm = commit
 	sw = switch
 	br = branch
+    nb = checkout -b
     force-push = push --force-with-lease --force-if-includes
     lg = log --oneline -n 10
     llg = log --oneline --decorate
