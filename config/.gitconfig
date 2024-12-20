@@ -3,7 +3,7 @@
 	cm = commit
 	sw = switch
 	br = branch
-    nb = checkout -b
+    newbr = checkout -b
     diffs = diff --staged
     pushnew = !"f(){ git push --set-upstream origin $(git branch --show-current); };f"
     forcepush = push --force-with-lease --force-if-includes
