@@ -33,7 +33,7 @@ set_keymap("n", "<Leader>ce", "", {
     noremap = true,
     silent = true,
     callback = function()
-        vim.cmd(":Copilot enable<Return>")
+        require("copilot.command").enable()
         print("Copilot enabled")
     end
 })
@@ -41,7 +41,7 @@ set_keymap("n", "<Leader>cd", "", {
     noremap = true,
     silent = true,
     callback = function()
-        vim.cmd(":Copilot disable<Return>")
+        require("copilot.command").disable()
         print("Copilot disabled")
     end
 })
