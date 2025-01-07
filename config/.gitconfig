@@ -1,8 +1,8 @@
 [alias]
-	st = status -sb
-	cm = commit
-	sw = switch
-	br = branch
+    st = status -sb
+    cm = commit
+    sw = switch
+    br = branch
     newbr = checkout -b
     diffs = diff --staged
     pushnew = !"f(){ git push --set-upstream origin $(git branch --show-current); };f"
@@ -12,14 +12,14 @@
     dlg = log --decorate
     glg = log --oneline --graph --decorate
 [user]
-	email = Tsukina7mochi@gmail.com
-	name = Tsukina-7mochi
+    email = Tsukina7mochi@gmail.com
+    name = Tsukina-7mochi
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [core]
-	editor = nvim
+    editor = nvim
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
