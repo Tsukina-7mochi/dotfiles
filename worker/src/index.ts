@@ -3,7 +3,7 @@ const STATIC_ROOT = new URL('https://raw.githubusercontent.com/Tsukina-7mochi/do
 export default {
 	async fetch(request, _env, _ctx): Promise<Response> {
 		const pathname = new URL(request.url).pathname;
-		const proxyRequest = new Request(new URL(pathname, STATIC_ROOT));
+		const proxyRequest = new Request(new URL(`./${pathname}`, STATIC_ROOT));
 
 		return fetch(proxyRequest);
 	},
