@@ -1,5 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
+    dependencies = {
+        "b0o/schemastore.nvim",
+    },
     event = "BufEnter",
     config = function()
         local lspconfig = require("lspconfig")
@@ -13,6 +16,15 @@ return {
         }
 
         lspconfig.gopls.setup {}
+
+        lspconfig.jsonls.setup {
+            settings = {
+                json = {
+                    schemas = require('schemastore').json.schemas(),
+                    validate = { enable = true },
+                },
+            },
+        }
 
         lspconfig.lua_ls.setup {}
 
