@@ -170,8 +170,8 @@ alias open="bash $UTIL_PATH/open.sh"
 
 
 # Start-up
-if [ -z "$TMUX" ] && [ -x "$(command -v neofetch)" ]; then
-	neofetch
+if [ -z "$TMUX" ] && [ -x "$(command -v fastfetch)" ]; then
+	fastfetch
 fi
 
 SEM_FILE_NAME="$HOME/.checkupdates-sem"
