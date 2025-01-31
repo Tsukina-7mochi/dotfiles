@@ -155,7 +155,9 @@ alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
 alias act="$HOME/programs/act/bin/act"
 
 # neovim
-alias vim="nvim"
+if [ -x "$(command -v nvim)" ]; then
+    alias vim="nvim"
+fi
 
 
 # Utilities
