@@ -187,6 +187,11 @@ fi
 source "$HOME/.p10k.zsh"
 source "$HOME/programs/powerlevel10k/powerlevel10k.zsh-theme"
 
+# fnm
+if [ -x "$(command -v fnm)" ]; then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
     . "$HOME/google-cloud-sdk/path.zsh.inc"
