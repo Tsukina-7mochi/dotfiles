@@ -185,7 +185,7 @@ fi
 
 # powerlevel10k
 source "$HOME/.p10k.zsh"
-source "$HOME/programs/powerlevel10k/powerlevel10k.zsh-theme"
+source "$HOME/.local/share/powerlevel10k/powerlevel10k.zsh-theme"
 
 # fnm
 if [ -x "$(command -v fnm)" ]; then
