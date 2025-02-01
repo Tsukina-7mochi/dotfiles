@@ -61,6 +61,9 @@ if [ -z "$PKG_MANAGER" ]; then
 fi
 echo "Package manager: $PKG_MANAGER"
 
+PLAT_NAME="$(uname -s)"
+PLAT_ISA="$(uname -m)"
+echo "OS: $PLAT_NAME $PLAT_ISA"
 
 
 # define utilities
@@ -100,8 +103,7 @@ function link_config() {
     ln -svf "$(pwd)/config/$1" "$2"
 }
 
-# detect package manager
-# install programs
+# update packages and repositories
 if [ "$SKIP_UPDATE" = "0" ]; then
     echo_emph "Updating"
 
@@ -120,6 +122,7 @@ if [ "$SKIP_UPDATE" = "0" ]; then
     esac
 fi
 
+# install programs
 if [ "$SKIP_INSTALL" = "0" ]; then
     echo_emph "Installing packages"
 
@@ -212,6 +215,7 @@ if [ "$SKIP_INSTALL" = "0" ]; then
         if [ ! -x "$(command -v rustup)" ]; then
             echo_emph2 "Installing rustup"
             curl --proto "=https" --tlsv1.2 -sSf "https://sh.rustup.rs" | sh -s -- -y
+            rustup default stable
         fi
 
         INSTALL_TARGETS=""
@@ -241,11 +245,45 @@ if [ "$SKIP_INSTALL" = "0" ]; then
             echo_emph2 "Installing uv"
             curl -fsSL https://astral.sh/uv/install.sh | sh
         fi
+
+        # install golang
+        if [ ! -f "/usr/local/go" ]; then
+            SKIP_GO_INSTALL=0
+            ARCHIVE_NAME="go1.23.5"
+
+            if [ "$PLAT_NAME" = "Linux" ]; then
+                ARCHIVE_NAME="$ARCHIVE_NAME.linux"
+            elif [ "$PLAT_NAME" = "Darwin" ]; then
+                ARCHIVE_NAME="$ARCHIVE_NAME.darwin"
+            else
+                SKIP_GO_INSTALL=1
+            fi
+
+            if [ "$PLAT_ISA" = "x86_64" ]; then
+                ARCHIVE_NAME="$ARCHIVE_NAME-amd64"
+            elif [ "$PLAT_ISA" = "amd64" ]; then
+                ARCHIVE_NAME="$ARCHIVE_NAME-amd64"
+            elif [ "$PLAT_ISA" = "arm64" ]; then
+                ARCHIVE_NAME="$ARCHIVE_NAME-arm64"
+            elif [ "$PLAT_ISA" = "aarch64" ]; then
+                ARCHIVE_NAME="$ARCHIVE_NAME-aarch64"
+            else
+                SKIP_GO_INSTALL=1
+            fi
+
+            ARCHIVE_NAME="$ARCHIVE_NAME.tar.gz"
+
+            if [ "$SKIP_GO_INSTALL" = "0" ]; then
+                wget "https://go.dev/dl/$ARCHIVE_NAME" -O /tmp/$ARCHIVE_NAME
+                sudo rm -rf /usr/local/go
+                sudo tar -C  /usr/local -xzf /tmp/$ARCHIVE_NAME
+                rm /tmp/$ARCHIVE_NAME
+            fi
+        fi
     fi
 fi
 
 # install configurations
-
 if [ "$SKIP_LINK" = "0" ]; then
     echo_emph "Making symlinks to configuration files"
 
