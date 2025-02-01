@@ -1,0 +1,42 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: ubuntu
+      args:
+        USERNAME: dockeruser
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: .
+        target: /home/dockeruser/dotfiles
+
+  ubuntu-brew:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: ubuntu-brew
+      args:
+        USERNAME: dockeruser
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: .
+        target: /home/dockeruser/dotfiles
+
+  arch:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: arch
+      args:
+        USERNAME: dockeruser
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: .
+        target: /home/dockeruser/dotfiles
