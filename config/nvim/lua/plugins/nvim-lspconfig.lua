@@ -35,7 +35,15 @@ return {
             cmd = { "bash", "-c", "source .venv/bin/activate && .venv/bin/pyright-langserver --stdio" },
         }
 
-        lspconfig.rust_analyzer.setup {}
+        lspconfig.rust_analyzer.setup {
+            settings = {
+                ["rust-analyzer"] = {
+                    checkOnSave = {
+                        command = "clippy",
+                    },
+                },
+            },
+        }
 
         lspconfig.ts_ls.setup {
             root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
