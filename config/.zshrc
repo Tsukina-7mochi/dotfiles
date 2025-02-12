@@ -117,8 +117,10 @@ if [ -x "$(command -v pyenv)" ]; then
     eval "$(pyenv init --path)"
 fi
 
-# Rye
-PATH="$PATH:/home/ts7m/.rye/shims"
+# uv
+if [ -v "$(command -v uv)" ]; then
+    eval "$(uv generate-shell-completion zsh)"
+fi
 
 # pipenv-vscode
 alias pipenv-vscode="bash $HOME/pipenv-vscode.sh"
