@@ -8,8 +8,6 @@ return {
         local lspconfig = require("lspconfig")
         local util = require("lspconfig/util")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local on_attach = function(client)
-        end
 
         lspconfig.denols.setup {
             root_dir = util.root_pattern("deno.json"),
@@ -18,6 +16,7 @@ return {
         lspconfig.gopls.setup {}
 
         lspconfig.jsonls.setup {
+            capabilities = capabilities,
             settings = {
                 json = {
                     schemas = require('schemastore').json.schemas(),
@@ -29,7 +28,6 @@ return {
         lspconfig.lua_ls.setup {}
 
         lspconfig.pyright.setup {
-            on_attach = on_attach,
             capabilities = capabilities,
             root_dir = util.root_pattern(".venv"),
             cmd = { "bash", "-c", "source .venv/bin/activate && .venv/bin/pyright-langserver --stdio" },
