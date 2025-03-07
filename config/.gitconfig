@@ -1,25 +1,78 @@
-[alias]
-    st = status -sb
-    cm = commit
-    sw = switch
-    br = branch
-    newbr = checkout -b
-    diffs = diff --staged
-    pushnew = !"f(){ git push --set-upstream origin $(git branch --show-current); };f"
-    forcepush = push --force-with-lease --force-if-includes
-    lg = log --oneline -n 10
-    llg = log --oneline --decorate
-    dlg = log --decorate
-    glg = log --oneline --graph --decorate
 [user]
     email = Tsukina7mochi@gmail.com
-    name = Tsukina-7mochi
-[init]
-    defaultBranch = main
+    name = Mooncake Sugar
+
+
+[branch]
+    sort = -committerdate
+
+[color]
+    ui = auto
+
+[column]
+    ui = auto
+
+[commit]
+    verbose = true
+
 [core]
     editor = nvim
+    excludesfile = ~/.gitignore
+    ignorecase = false
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[fetch]
+    all = true
+    prune = true
+    pruneTags = true
+
+[help]
+    autocorrect = prompt
+
+[init]
+    defaultBranch = main
+
+[merge]
+    conflictStyle = zdiff3
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[rerere]
+    autoUpdate = true
+    enabled = true
+
+[tag]
+    sort = -version:refname
+
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
+[alias]
+    st = status -sb
+    cm = commit
+    sw = switch
+    br = branch
+    nb = checkout -b
+    diffs = diff --staged
+    forcepush = push --force-with-lease --force-if-includes
+    lg = log --oneline -n 10
+    llg = log --oneline --decorate
+    dlg = log --decorate
+    glg = log --oneline --graph --decorate
