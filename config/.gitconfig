@@ -64,12 +64,13 @@
     process = git-lfs filter-process
     required = true
 
+
 [alias]
     st = status -sb
     cm = commit
+    co = checkout
     sw = switch
     br = branch
-    nb = checkout -b
     diffs = diff --staged
     forcepush = push --force-with-lease --force-if-includes
     lg = log --oneline -n 10
