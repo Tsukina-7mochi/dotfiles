@@ -2,7 +2,7 @@
 
 function open_in_windows() {
     windows_path=$(wslpath -aw $1 | sed -e 's/ /\ /')
-    "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" -Command "& {Invoke-Item $windows_path}"
+    "/mnt/c/Windows/explorer.exe" "$windows_path"
 }
 
 if [ $# -lt 1 ]; then
