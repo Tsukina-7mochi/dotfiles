@@ -156,12 +156,6 @@ alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
 # act (GitHub Actions)
 alias act="$HOME/programs/act/bin/act"
 
-# neovim
-if [ -x "$(command -v nvim)" ]; then
-    alias vim="nvim"
-fi
-
-
 # Utilities
 export UTIL_PATH="$HOME/dotfiles/util"
 
