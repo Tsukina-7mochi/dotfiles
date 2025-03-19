@@ -10,11 +10,18 @@ set_keymap("v", ";", ":", { noremap = true, silent = true })
 set_keymap("n", "<Enter>", "O<ESC>", {})
 set_keymap("n", "<S-Enter>", "O<ESC>", {})
 set_keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", { noremap = true, silent = true })
-set_keymap("n", "<C-k>", "", {
+set_keymap("n", "<C-k><C-k>", "", {
     noremap = true,
     silent = true,
     callback = function()
         vim.lsp.buf.signature_help()
+    end,
+})
+set_keymap("n", "<C-k><C-l>", "", {
+    noremap = true,
+    silent = true,
+    callback = function()
+        vim.diagnostic.open_float()
     end,
 })
 set_keymap("i", "<Left>", "<C-G>U<Left>", { noremap = true, silent = true })
