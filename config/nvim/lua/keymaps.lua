@@ -7,8 +7,6 @@ vim.g.maplocalleader = " "
 set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 set_keymap("n", ";", ":", { noremap = true, silent = true })
 set_keymap("v", ";", ":", { noremap = true, silent = true })
-set_keymap("n", "<Enter>", "O<ESC>", {})
-set_keymap("n", "<S-Enter>", "O<ESC>", {})
 set_keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", { noremap = true, silent = true })
 set_keymap("n", "<C-k><C-k>", "", {
     noremap = true,
