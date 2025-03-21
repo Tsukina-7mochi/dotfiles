@@ -1,3 +1,19 @@
+local function open_find_files()
+    require("telescope.builtin").find_files()
+end
+
+local function open_live_grep()
+    require("telescope.builtin").live_grep()
+end
+
+local function open_buffers()
+    require("telescope.builtin").buffers()
+end
+
+local function open_help_tags()
+    require("telescope.builtin").help_tags()
+end
+
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -5,16 +21,16 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-fzf-native.nvim",
         },
+        keys = {
+            { "<leader>ff", open_find_files, desc = "Telescope find files" },
+            { "<leader>fg", open_live_grep,  desc = "Telescope live grep" },
+            { "<leader>fb", open_buffers,    desc = "Telescope buffers" },
+            { "<leader>fh", open_help_tags,  desc = "Telescope help" },
+        },
         event = "VimEnter",
         config = function()
             local telescope = require("telescope")
             local actions = require("telescope.actions")
-            local builtin = require("telescope.builtin")
-
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-            vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-            vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-            vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
             telescope.setup {
                 defaults = {
@@ -29,6 +45,9 @@ return {
                     },
                 },
                 pickers = {
+                    colorscheme = {
+                        enable_preview = true,
+                    },
                     find_files = {
                         hidden = true,
                         find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },

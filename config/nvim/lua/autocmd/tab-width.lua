@@ -1,9 +1,5 @@
-if table.unpack == nil then
-    table.unpack = unpack
-end
-
 ---@param tab_width table<string, number>
-local auto_tab_width = function(tab_width)
+local set_auto_tab_width = function(tab_width)
     for lang, width in pairs(tab_width) do
         vim.api.nvim_create_autocmd("FileType", {
             pattern = lang,
@@ -15,19 +11,7 @@ local auto_tab_width = function(tab_width)
     end
 end
 
----@param filetypes table<string, string>
-local auto_filetype = function(filetypes)
-    for extension, filetype in pairs(filetypes) do
-        vim.api.nvim_create_autocmd("BufEnter", {
-            pattern = { "*." .. extension },
-            callback = function()
-                vim.api.nvim_set_option_value("filetype", filetype, { buf = 0 })
-            end
-        })
-    end
-end
-
-auto_tab_width({
+set_auto_tab_width({
     css = 2,
     html = 2,
     javascript = 2,
@@ -44,9 +28,4 @@ auto_tab_width({
     typescriptreact = 2,
     ["typescript.tsx"] = 2,
     typespec = 2,
-})
-
-auto_filetype({
-    ejs = "javascript",
-    cjs = "javascript",
 })
