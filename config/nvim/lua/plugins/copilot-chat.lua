@@ -106,7 +106,7 @@ return {
         "CopilotChatAgents",
     },
     keys = {
-        { "<leader>fc", pickPromptWithTelescope,      desc = "Select prompt" },
+        { "<leader>fp", pickPromptWithTelescope,      desc = "Select prompt" },
         { "<leader>cc", ":CopilotChatToggle<Return>", desc = "Toggle Copilot chat window" },
         { "<leader>ca", askWithEntireBuffer,          desc = "Ask to Copilot" },
     },

@@ -1,19 +1,3 @@
-local function open_find_files()
-    require("telescope.builtin").find_files()
-end
-
-local function open_live_grep()
-    require("telescope.builtin").live_grep()
-end
-
-local function open_buffers()
-    require("telescope.builtin").buffers()
-end
-
-local function open_help_tags()
-    require("telescope.builtin").help_tags()
-end
-
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -22,10 +6,11 @@ return {
             "nvim-telescope/telescope-fzf-native.nvim",
         },
         keys = {
-            { "<leader>ff", open_find_files, desc = "Telescope find files" },
-            { "<leader>fg", open_live_grep,  desc = "Telescope live grep" },
-            { "<leader>fb", open_buffers,    desc = "Telescope buffers" },
-            { "<leader>fh", open_help_tags,  desc = "Telescope help" },
+            { "<leader>ff", function() require("telescope.builtin").find_files() end,  desc = "Telescope find files" },
+            { "<leader>fg", function() require("telescope.builtin").live_grep() end,   desc = "Telescope live grep" },
+            { "<leader>fb", function() require("telescope.builtin").buffers() end,     desc = "Telescope buffers" },
+            { "<leader>fh", function() require("telescope.builtin").help_tags() end,   desc = "Telescope help" },
+            { "<leader>fc", function() require("telescope.builtin").colorscheme() end, desc = "Telescope colorscheme" },
         },
         event = "VimEnter",
         config = function()
