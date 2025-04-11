@@ -11,6 +11,7 @@ return {
             { "<leader>fb", function() require("telescope.builtin").buffers() end,     desc = "Telescope buffers" },
             { "<leader>fh", function() require("telescope.builtin").help_tags() end,   desc = "Telescope help" },
             { "<leader>fc", function() require("telescope.builtin").colorscheme() end, desc = "Telescope colorscheme" },
+            { "<leader>fs", function() require("telescope.builtin").git_status() end,  desc = "Telescope git status" },
         },
         event = "VimEnter",
         config = function()
