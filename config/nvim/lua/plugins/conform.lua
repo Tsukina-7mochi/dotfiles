@@ -61,6 +61,7 @@ return {
                 typescript = js_ts_formatter,
                 typescriptreact = js_ts_formatter,
                 ["typescript.jsx"] = js_ts_formatter,
+                typespec = { "tsp" },
             },
             formatters = {
                 ["venv.isort"] = {
@@ -75,19 +76,11 @@ return {
                     cwd = require("conform.util").root_file({ ".venv" }),
                     require_cwd = true,
                 },
-                ["deno"] = {
-                    command = "deno",
+                ["tsp"] = {
+                    command = require("conform.util").from_node_modules("tsp"),
                     stdin = false,
-                    args = { "fmt", "$FILENAME" },
-                    cwd = require("conform.util").root_file({ "deno.json", "deno.jsonc" }),
-                    require_cwd = true,
-                },
-                ["biome"] = {
-                    command = "npx",
-                    stdin = false,
-                    args = { "@biomejs/biome", "format", "--write", "--colors", "off", "--log-kind", "compact", "$FILENAME" },
-                    cwd = require("conform.util").root_file({ "biome.json" }),
-                    require_cwd = true,
+                    args = { "format", "$FILENAME" },
+                    cwd = require("conform.util").root_file({ "tspconfig.yaml" }),
                 },
             },
         }
