@@ -165,6 +165,9 @@ alias deepl="zsh $UTIL_PATH/deepl.zsh"
 # open
 alias open="bash $UTIL_PATH/open.sh"
 
+# pnpm
+export PNPM_HOME="/home/ts7m/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 
 # Start-up
