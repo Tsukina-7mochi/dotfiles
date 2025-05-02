@@ -9,6 +9,8 @@ return {
         local util = require("lspconfig/util")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+        lspconfig.astro.setup {}
+
         lspconfig.denols.setup {
             root_dir = util.root_pattern("deno.json"),
         }
