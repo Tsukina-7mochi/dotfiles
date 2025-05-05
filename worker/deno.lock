@@ -1,5 +1,20 @@
 {
   "version": "5",
+  "specifiers": {
+    "jsr:@std/assert@*": "1.0.9",
+    "jsr:@std/internal@^1.0.5": "1.0.5"
+  },
+  "jsr": {
+    "@std/assert@1.0.9": {
+      "integrity": "a9f0c611a869cc791b26f523eec54c7e187aab7932c2c8e8bea0622d13680dcd",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/internal@1.0.5": {
+      "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
+    }
+  },
   "remote": {
     "https://cdn.skypack.dev/-/fast-xml-parser@v3.21.1-GF6KBYcx54Lz1yeJBPtP/dist=es2019,mode=imports/optimized/fast-xml-parser.js": "f6929a0f42f4264a392432c802482f5788714dc48eedb96972165e6dc0b689b9",
     "https://cdn.skypack.dev/-/highlight.js@v11.7.0-Olym85wPKiooKI1kfTqT/dist=es2019,mode=imports/optimized/common/core-0d90ad66.js": "4b2835ea28adc1c1d8057fbe617b8df817499dab72ffa6b6a88c0d63eac05ec8",
@@ -350,5 +365,10 @@
     "https://raw.githubusercontent.com/skymethod/denoflare/v0.7.0/common/xml_parser.ts": "3168b8f2cf118d12d25b4dbd658f59b13e64249cb44715e6660e5ebfc4b7afc7",
     "https://raw.githubusercontent.com/skymethod/denoflare/v0.7.0/common/xml_util.ts": "9638b77f4a099ccb039b3f3bcf6e34cfb4a98658ffbe0d228627e899f43d8671",
     "https://raw.githubusercontent.com/skymethod/denoflare/v0.7.0/examples/webtail-worker/deps_worker.ts": "bb69a952cdc49e439c845b2a3e8b8d52eb64f2287e312b669c91f34933f39dec"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@*"
+    ]
   }
 }

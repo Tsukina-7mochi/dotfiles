@@ -2,7 +2,8 @@
 const REPO_URL = new URL("https://github.com/Tsukina-7mochi/dotfiles");
 
 // deno-fmt-ignore
-const STATIC_ROOT = new URL("https://raw.githubusercontent.com/Tsukina-7mochi/dotfiles/refs/heads/main/");
+const contentUrl = (ref = "main") =>
+  new URL(`https://raw.githubusercontent.com/Tsukina-7mochi/dotfiles/refs/heads/${ref}/`);
 
 export default {
   async fetch(
@@ -10,13 +11,16 @@ export default {
     _env: unknown,
     _ctx: unknown,
   ): Promise<Response> {
-    const pathname = new URL(request.url).pathname;
+    const url = new URL(request.url);
+    const pathname = url.pathname;
+    const searchParams = url.searchParams;
 
     if (pathname === "/") {
       return Response.redirect(REPO_URL, 302);
     }
 
-    const redirectUrl = new URL(`./${pathname}`, STATIC_ROOT);
+    const ref = searchParams.get("ref") ?? undefined;
+    const redirectUrl = new URL(`.${pathname}`, contentUrl(ref));
     return Response.redirect(redirectUrl, 302);
   },
 };
