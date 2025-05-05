@@ -1,6 +1,8 @@
-const STATIC_ROOT = new URL(
-  "https://raw.githubusercontent.com/Tsukina-7mochi/dotfiles/refs/heads/main/",
-);
+// deno-fmt-ignore
+const REPO_URL = new URL("https://github.com/Tsukina-7mochi/dotfiles");
+
+// deno-fmt-ignore
+const STATIC_ROOT = new URL("https://raw.githubusercontent.com/Tsukina-7mochi/dotfiles/refs/heads/main/");
 
 export default {
   async fetch(
@@ -9,8 +11,12 @@ export default {
     _ctx: unknown,
   ): Promise<Response> {
     const pathname = new URL(request.url).pathname;
-    const proxyRequest = new Request(new URL(`./${pathname}`, STATIC_ROOT));
 
-    return await fetch(proxyRequest);
+    if (pathname === "/") {
+      return Response.redirect(REPO_URL, 302);
+    }
+
+    const redirectUrl = new URL(`./${pathname}`, STATIC_ROOT);
+    return Response.redirect(redirectUrl, 302);
   },
 };
