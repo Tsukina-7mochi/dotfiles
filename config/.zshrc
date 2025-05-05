@@ -130,6 +130,7 @@ PATH="$PATH:/mnt/c/Program Files/Microsoft VS Code/bin"
 
 # Deno
 export DENO_INSTALL="$HOME/.deno"
+export DENO_DIR="$HOME/.cache/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # rustup
