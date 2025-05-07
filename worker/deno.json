@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno serve ./src/index.ts",
+    "dev": "deno serve --port 8080 --watch ./src/index.ts",
     "deploy": "deno run -A --unstable-worker-options https://raw.githubusercontent.com/skymethod/denoflare/v0.7.0/cli/cli.ts push dotfiles-proxy --config denoflare.jsonc "
   },
   "imports": {
