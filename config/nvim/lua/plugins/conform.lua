@@ -40,7 +40,7 @@ local js_ts_formatter = function(bufnr)
         return { "deno" }
     end
 
-    return { "eslint", "prettier" }
+    return { "eslint", "prettier", lsp_format = "fallback" }
 end
 
 return {
@@ -58,6 +58,7 @@ return {
                 javascript = js_ts_formatter,
                 javascriptreact = js_ts_formatter,
                 ["javascript.jsx"] = js_ts_formatter,
+                json = js_ts_formatter,
                 typescript = js_ts_formatter,
                 typescriptreact = js_ts_formatter,
                 ["typescript.jsx"] = js_ts_formatter,
