@@ -166,6 +166,11 @@ alias deepl="zsh $UTIL_PATH/deepl.zsh"
 # open
 alias open="bash $UTIL_PATH/open.sh"
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 # pnpm
 export PNPM_HOME="/home/ts7m/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
