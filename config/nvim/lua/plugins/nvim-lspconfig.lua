@@ -11,6 +11,8 @@ return {
 
         lspconfig.astro.setup {}
 
+        lspconfig.clangd.setup {}
+
         lspconfig.denols.setup {
             root_dir = util.root_pattern("deno.json"),
         }
