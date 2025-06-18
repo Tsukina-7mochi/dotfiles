@@ -8,5 +8,6 @@ require("lazynvim")
 require("autocmd")
 require("command")
 require("options")
+require("clipboard-wsl")
 
 require("onedark").load()
