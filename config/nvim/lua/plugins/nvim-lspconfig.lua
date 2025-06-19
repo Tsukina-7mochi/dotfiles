@@ -21,6 +21,7 @@ return {
 
         lspconfig.jsonls.setup {
             capabilities = capabilities,
+            cmd = { 'vscode-json-languageserver', '--stdio' },
             settings = {
                 json = {
                     schemas = require('schemastore').json.schemas(),
