@@ -79,25 +79,6 @@ PATH="$PATH:$HOME/.local/bin"
 # exa
 local exa_ignore_paths="node_modules|.git|.cache"
 
-# Enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-if [ -x "$(command -v exa)" ]; then
-    alias ls='exa --git'
-    alias ll='exa --git -l'
-    alias la='exa --git -al'
-    alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
-fi
-
 # Homebrew
 PATH="/opt/homebrew/bin:$PATH"
 
@@ -122,9 +103,6 @@ if [ -v "$(command -v uv)" ]; then
     eval "$(uv generate-shell-completion zsh)"
 fi
 
-# pipenv-vscode
-alias pipenv-vscode="bash $HOME/pipenv-vscode.sh"
-
 # VSCode
 PATH="$PATH:/mnt/c/Program Files/Microsoft VS Code/bin"
 
@@ -136,10 +114,6 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # rustup
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# Delichon
-alias delichon='deno run --allow-read --allow-write --allow-net https://raw.githubusercontent.com/Tsukina-7mochi/delichon/deploy/mod.js --gh-token $DELICHON_GH_TOKEN'
-alias delichon-update='deno cache https://raw.githubusercontent.com/Tsukina-7mochi/delichon/deploy/mod.js'
-
 # golang
 export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="$HOME/go"
@@ -147,9 +121,6 @@ export PATH="$PATH:$GOPATH/bin"
 
 # zoxide
 eval "$(zoxide init zsh)"
-if [ -n "$(command -v z)" ]; then
-    alias cd="z"
-fi
 
 # clip.exe
 alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
@@ -208,3 +179,46 @@ fi
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
     . "$HOME/google-cloud-sdk/completion.zsh.inc"
 fi
+
+# bun completions
+[ -s "/Users/toyoshima_hidehiro/.bun/_bun" ] && source "/Users/toyoshima_hidehiro/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/toyoshima_hidehiro/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+# Enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+if [ ! "$CLAUDECODE" ]; then
+    if [ -x "$(command -v exa)" ]; then
+        alias ls='exa --git'
+        alias ll='exa --git -l'
+        alias la='exa --git -al'
+        alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
+    fi
+
+    if [ -n "$(command -v z)" ]; then
+        alias cd="z"
+    fi
+fi
+
+
