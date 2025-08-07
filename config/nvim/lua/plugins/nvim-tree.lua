@@ -2,6 +2,12 @@ return {
     'nvim-tree/nvim-tree.lua',
     config = function()
         require("nvim-tree").setup {
+            tab = {
+                sync = {
+                    open = true,
+                    close = true,
+                },
+            },
             renderer = {
                 add_trailing = true,
                 group_empty = true,
@@ -11,13 +17,6 @@ return {
                 indent_markers = {
                     enable = true,
                     inline_arrows = false,
-                    icons = {
-                        corner = "╰",
-                        edge = "│",
-                        item = "│",
-                        bottom = "─",
-                        none = "",
-                    },
                 },
                 icons = {
                     git_placement = "signcolumn",
@@ -60,8 +59,8 @@ return {
     end,
     cmd = { "NvimTreeOpen", "NvimTreeToggle" },
     keys = {
-        { "<leader>tt", mode = { "n" }, ":NvimTreeToggle<Enter>",   desc = "Open file tree" },
-        { "<leader>tc", mode = { "n" }, ":NvimTreeCollapse<Enter>", desc = "Collapse tree" },
-        { "<leader>tf", mode = { "n" }, ":NvimTreeFindFile<Enter>", desc = "Find file tree" },
+        { "<leader>tt", mode = { "n" }, ":NvimTreeToggle<Enter>",              desc = "Open file tree" },
+        { "<leader>tc", mode = { "n" }, ":NvimTreeCollapseKeepBuffers<Enter>", desc = "Collapse tree" },
+        { "<leader>tf", mode = { "n" }, ":NvimTreeFindFile<Enter>",            desc = "Find file tree" },
     },
 }
