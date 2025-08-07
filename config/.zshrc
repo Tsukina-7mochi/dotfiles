@@ -187,6 +187,9 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# claude code
+alias claude="/home/ts7m/.claude/local/claude"
+
 # pnpm
 export PNPM_HOME="/Users/toyoshima_hidehiro/Library/pnpm"
 case ":$PATH:" in
@@ -220,5 +223,4 @@ if [ ! "$CLAUDECODE" ]; then
         alias cd="z"
     fi
 fi
-
 
