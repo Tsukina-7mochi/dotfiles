@@ -75,7 +75,10 @@ set_lsp_command_keymap(
 )
 
 set_lsp_command_keymap(
-    vim.lsp.buf.definition,
+    function()
+        vim.cmd(":tab split")
+        vim.lsp.buf.definition()
+    end,
     { name = "GoToDefinition", nargs = 0 },
     { mode = "n", key = "gd" }
 )
