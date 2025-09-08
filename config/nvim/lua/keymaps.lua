@@ -11,8 +11,8 @@ set_keymap("i", "<Right>", "<C-G>U<Right>", { noremap = true, silent = true })
 set_keymap("i", "<Up>", "<C-G>U<Up>", { noremap = true, silent = true })
 set_keymap("i", "<Down>", "<C-G>U<Down>", { noremap = true, silent = true })
 
-set_keymap("n", ";", ":", { noremap = true, silent = true })
-set_keymap("v", ";", ":", { noremap = true, silent = true })
+-- set_keymap("n", ";", ":", { noremap = true, silent = true })
+-- set_keymap("v", ";", ":", { noremap = true, silent = true })
 
 set_keymap("n", "<Leader><Esc>", ":<C-u>set nohlsearch<Return>", { noremap = true, silent = true })
 
