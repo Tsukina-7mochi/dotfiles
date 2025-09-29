@@ -59,6 +59,7 @@ return {
                 javascriptreact = js_ts_formatter,
                 ["javascript.jsx"] = js_ts_formatter,
                 json = js_ts_formatter,
+                jsonc = js_ts_formatter,
                 typescript = js_ts_formatter,
                 typescriptreact = js_ts_formatter,
                 ["typescript.jsx"] = js_ts_formatter,
