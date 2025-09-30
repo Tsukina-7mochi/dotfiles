@@ -35,6 +35,7 @@ return {
                 enabled = true,
                 sources = cmp.config.sources({
                     { name = "copilot",  group_index = 2 },
+                    { name = "nvim_lsp" },
                     { name = "buffer" },
                     { name = "path" },
                     { name = "emmet_vim" },
