@@ -54,6 +54,7 @@ return {
                 return { timeout_ms = 1000, lsp_fallback = true }
             end,
             formatters_by_ft = {
+                ["*"] = { "trim_whitespace" },
                 python = { "venv.isort", "venv.black" },
                 javascript = js_ts_formatter,
                 javascriptreact = js_ts_formatter,
