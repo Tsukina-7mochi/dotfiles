@@ -76,8 +76,8 @@ fi
 # PATH and aliases
 PATH="$PATH:$HOME/.local/bin"
 
-# exa
-local exa_ignore_paths="node_modules|.git|.cache"
+# eza
+local eza_ignore_paths="node_modules|.git|.cache"
 
 # Homebrew
 PATH="/opt/homebrew/bin:$PATH"
@@ -85,7 +85,7 @@ PATH="/opt/homebrew/bin:$PATH"
 # nvm
 export NVM_DIR="$HOME/.nvm"
 if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
-    . "/opt/homebrew/opt/nvm/nvm.sh" 
+    . "/opt/homebrew/opt/nvm/nvm.sh"
 fi
 if [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]; then
     . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
@@ -203,11 +203,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ ! "$CLAUDECODE" ]; then
-    if [ -x "$(command -v exa)" ]; then
-        alias ls='exa --git'
-        alias ll='exa --git -l'
-        alias la='exa --git -al'
-        alias lt="exa --tree --level=3 --ignore-glob=\"$exa_ignore_paths\""
+    if [ -x "$(command -v eza)" ]; then
+        alias ls='eza --git'
+        alias ll='eza --git -l'
+        alias la='eza --git -al'
+        alias lt="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
     fi
 
     if [ -n "$(command -v z)" ]; then
