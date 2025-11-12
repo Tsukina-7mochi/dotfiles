@@ -20,7 +20,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
 setopt inc_append_history
-setopt share_history
 
 
 
@@ -187,7 +186,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # claude code
-alias claude="$HOME/.claude/local/claude"
+alias claude="$HOME/.local/bin/claude"
 
 
 # Enable color support of ls and also add handy aliases
