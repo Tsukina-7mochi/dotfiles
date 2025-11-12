@@ -77,3 +77,4 @@
     llg = log --oneline --decorate
     dlg = log --decorate
     glg = log --oneline --graph --decorate
+    deletemerged = !git branch --merged main | grep -v main | xargs git branch -d
