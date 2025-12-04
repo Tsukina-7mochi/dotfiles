@@ -188,6 +188,12 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # claude code
 alias claude="$HOME/.local/bin/claude"
 
+# nim
+export NIM_INSTALL="$HOME/programs/nim-2.2.6"
+export PATH="$NIM_INSTALL/bin:$PATH"
+
+# ghcup
+[ -f "/home/ts7m/.ghcup/env" ] && . "/home/ts7m/.ghcup/env"
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -213,4 +219,5 @@ if [ ! "$CLAUDECODE" ]; then
         alias cd="z"
     fi
 fi
+
 
