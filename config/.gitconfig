@@ -17,7 +17,7 @@
 
 [core]
     editor = nvim
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.config/git/.gitignore
     ignorecase = false
 
 [diff]

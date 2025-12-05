@@ -13,8 +13,6 @@ function link_config() {
     ln -svf "$(pwd)/config/$1" "$2"
 }
 
-mkdir -p "$HOME/.config"
-
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 link_config .zshrc "$HOME/.zshrc"
@@ -22,4 +20,5 @@ link_config .tmux.conf "$XDG_CONFIG_HOME/tmux/.tmux.conf"
 link_config .p10k.zsh "$HOME/.p10k.zsh"
 link_config .vimrc "$HOME/.vimrc"
 link_config .gitconfig "$XDG_CONFIG_HOME/git/config"
+link_config .gitignore_global "$XDG_CONFIG_HOME/git/.gitignore"
 link_config nvim "$XDG_CONFIG_HOME/nvim"
