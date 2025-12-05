@@ -1,11 +1,17 @@
-# dotenv
-if [ -f "$HOME/.set_env.sh" ]; then
-    . "$HOME/.set_env.sh"
-fi
+###########
+### XDG ###
+###########
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 
+###########
+### ZSH ###
+###########
 
-# History file
+# History
 HISTFILE="$HOME/.histfile"
 HISTSIZE=1000
 SAVEHIST=1000
@@ -21,19 +27,13 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
 setopt inc_append_history
 
-
-
 # Compleasion
 zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
 
-
-
 # Prompt
 PS1='%B%F{blue}%n@%m%f %F{cyan}%~%f%b$ '
-
-
 
 # Keys
 # Emacs mode key configuration
@@ -71,79 +71,130 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 
 
+#############
+### PATHS ###
+#############
 
-# PATH and aliases
-PATH="$PATH:$HOME/.local/bin"
+function add_path_if_exists() {
+    [ -d "$1" ] && export PATH="$1:$PATH"
+}
 
-# eza
-local eza_ignore_paths="node_modules|.git|.cache"
+add_path_if_exists "$HOME/.local/bin" 
+add_path_if_exists "$HOME/dotfiles/util" 
+
+
+####################
+### APPLICATIONS ###
+####################
+
+function source_if_exists() {
+    [ -s "$1" ] && source "$1" 
+}
 
 # Homebrew
-PATH="/opt/homebrew/bin:$PATH"
+add_path_if_exists "/opt/homebrew/bin"
+
+# zoxide
+if [ -x "$(command -v zoxide)" ]; then
+    eval "$(zoxide init zsh)"
+    alias cd="z"
+fi
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
-    . "/opt/homebrew/opt/nvm/nvm.sh"
-fi
-if [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]; then
-    . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+local nvm_path="$XDG_CONFIG_HOME/.nvm"
+if [ -d "$nvm_path" ]; then
+    export NVM_DIR="$nvm_path"
+
+    source_if_exists "$NVM_DIR/nvm.sh" 
+    source_if_exists "$NVM_DIR/bash_completion"
 fi
 
-# Pyenv
-PYENV_ROOT="$HOME/.pyenv"
-PATH="$PYENV_ROOT/bin:$PATH"
-if [ -x "$(command -v pyenv)" ]; then
-    eval "$(pyenv init --path)"
+local pnpm_path="/home/ts7m/.local/share/pnpm"
+if [ -d "$pnpm_path" ]; then
+    export PNPM_HOME="$pnpm_path"
+    export PATH="$PNPM_HOME:$PATH"
 fi
 
 # uv
-if [ -v "$(command -v uv)" ]; then
+if [ -x "$(command -v uv)" ]; then
     eval "$(uv generate-shell-completion zsh)"
 fi
 
 # VSCode
-PATH="$PATH:/mnt/c/Program Files/Microsoft VS Code/bin"
+add_path_if_exists "/mnt/c/Program\\ Files/Microsoft\\ VS\\ Code/bin"
 
 # Deno
-export DENO_INSTALL="$HOME/.deno"
-export DENO_DIR="$HOME/.cache/deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+local deno_path="$HOME/.deno"
+if [ -d "$deno_path" ]; then
+    export DENO_INSTALL="$deno_path"
+    export DENO_DIR="$XDG_CACHE_HOME/deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
+fi
+
+# Bun
+local bun_path="$HOME/.bun"
+if [ -d "$bun_path" ]; then
+    export BUN_INSTALL="$bun_path"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+
+    source_if_exists "$HOME/.bun/_bun" 
+fi
 
 # rustup
-export PATH="$PATH:$HOME/.cargo/bin"
+add_path_if_exists "$HOME/.cargo/bin"
 
 # golang
-export PATH="$PATH:/usr/local/go/bin"
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
+local go_path="/usr/local/go/bin"
+if [ -d "$go_path" ]; then
+    export PATH="$go_path:$PATH"
+    export GOPATH="$HOME/go"
+    export PATH="$GOPATH/bin:$PATH"
+fi
 
-# zoxide
-eval "$(zoxide init zsh)"
+# nim
+local nim_path="$HOME/programs/nim-2.2.6"
+if [ -d "$nim_path" ]; then
+    export NIM_INSTALL="$nim_path"
+    export PATH="$NIM_INSTALL/bin:$PATH"
+fi
+
+# ghcup
+source_if_exists "/home/ts7m/.ghcup/env" 
 
 # clip.exe
-alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
+if [ -f "/mnt/c/Windows/System32/clip.exe" ]; then
+    alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
+fi
 
-# act (GitHub Actions)
-alias act="$HOME/programs/act/bin/act"
+# google cloud sdk
+source_if_exists "$HOME/google-cloud-sdk/path.zsh.inc"
+source_if_exists "$HOME/google-cloud-sdk/completion.zsh.inc"
 
-# Utilities
-export UTIL_PATH="$HOME/dotfiles/util"
+# eza
+if [ -x "$(command -v eza)" ]; then
+    local eza_ignore_paths="node_modules|.git|.cache"
+    alias ls='eza --git'
+    alias ll='eza --git -l'
+    alias la='eza --git -al'
+    alias lt="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
+fi
 
-# Deepl
-alias deepl="zsh $UTIL_PATH/deepl.zsh"
+# Enable color support
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-# open
-alias open="bash $UTIL_PATH/open.sh"
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
-# pnpm
-export PNPM_HOME="/home/ts7m/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+
+################
+### START UP ###
+################
 
 # Start-up
 if [ -z "$TMUX" ] && [ -x "$(command -v fastfetch)" ]; then
@@ -163,61 +214,24 @@ fi
 source "$HOME/.p10k.zsh"
 source "$HOME/.local/share/powerlevel10k/powerlevel10k.zsh-theme"
 
-# fnm
-if [ -x "$(command -v fnm)" ]; then
-    eval "$(fnm env --use-on-cd --shell zsh)"
+
+################
+### LOAD ENV ###
+################
+
+[ -s "$HOME/.env" ] && source "$HOME/.env"
+
+
+############
+### MISC ###
+############
+
+if [ -n "$CLAUDECODE" ]; then
+    unalias cd
+    unalias ls
+    unalias dir
+    unalias vdir
+    unalias grep
+    unalias fgrep
+    unalias egrep
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
-    . "$HOME/google-cloud-sdk/path.zsh.inc"
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
-    . "$HOME/google-cloud-sdk/completion.zsh.inc"
-fi
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# claude code
-alias claude="$HOME/.local/bin/claude"
-
-# nim
-export NIM_INSTALL="$HOME/programs/nim-2.2.6"
-export PATH="$NIM_INSTALL/bin:$PATH"
-
-# ghcup
-[ -f "/home/ts7m/.ghcup/env" ] && . "/home/ts7m/.ghcup/env"
-
-# Enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-if [ ! "$CLAUDECODE" ]; then
-    if [ -x "$(command -v eza)" ]; then
-        alias ls='eza --git'
-        alias ll='eza --git -l'
-        alias la='eza --git -al'
-        alias lt="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
-    fi
-
-    if [ -n "$(command -v z)" ]; then
-        alias cd="z"
-    fi
-fi
-
-
