@@ -1,11 +1,12 @@
 vim.lsp.config("*", {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 vim.lsp.enable("astro")
 vim.lsp.enable("clangd")
 vim.lsp.enable("denols")
 vim.lsp.enable("gopls")
+vim.lsp.enable("hls")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("pyright")
