@@ -207,7 +207,7 @@ if [ -f "$SEM_FILE_NAME" ] && [ "$(cat $SEM_FILE_NAME)" = "$DATE" ]; then
 	# update check already executed
 else
 	echo "$DATE" > $SEM_FILE_NAME
-	bash "$UTIL_PATH/checkupdates.sh"
+	bash "$HOME/dotfiles/util/checkupdates.sh"
 fi
 
 # powerlevel10k
