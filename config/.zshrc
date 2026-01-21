@@ -161,6 +161,16 @@ fi
 # ghcup
 source_if_exists "/home/ts7m/.ghcup/env" 
 
+# gradle
+add_path_if_exists "/opt/gradle/gradle-9.2.1/bin"
+
+# java
+local java_path="/usr/lib/jvm/java-21-openjdk"
+if [ -d "$java_path" ]; then
+    export JAVA_HOME="$java_path"
+    export PATH=$java_path/bin:$PATH
+fi
+
 # clip.exe
 if [ -f "/mnt/c/Windows/System32/clip.exe" ]; then
     alias "clip.exe"="iconv -t sjis | /mnt/c/Windows/System32/clip.exe"
