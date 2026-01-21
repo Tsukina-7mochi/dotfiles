@@ -1,2 +1,2 @@
-require("command.tab-width")
+require("command.indentation")
 require("command.lsp-rename")
