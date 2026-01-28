@@ -186,7 +186,7 @@ if [ -x "$(command -v eza)" ]; then
     alias ls='eza --git'
     alias ll='eza --git -l'
     alias la='eza --git -al'
-    alias lt="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
+    alias tree="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
 fi
 
 # Enable color support
