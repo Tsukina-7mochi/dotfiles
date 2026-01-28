@@ -2,6 +2,9 @@
     email = Tsukina7mochi@gmail.com
     name = Mooncake Sugar
 
+[credential]
+	helper = store
+
 
 [branch]
     sort = -committerdate
