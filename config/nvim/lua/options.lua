@@ -24,3 +24,7 @@ vim.opt.tabstop = 4
 
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
+
+vim.opt.laststatus = 0
+vim.opt.statusline = "─"
+vim.opt.fillchars = { stl = "─", stlnc = "─" }
