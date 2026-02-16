@@ -51,6 +51,15 @@ return {
     dependencies = {
         "rafamadriz/friendly-snippets",
         "fang2hou/blink-copilot",
+        {
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {
+                library = {
+                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                },
+            },
+        },
     },
     version = "1.*",
 
@@ -64,13 +73,18 @@ return {
             ["<C-k>"] = { toggle_docs, "fallback" },
         },
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "copilot" },
+            default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot" },
             providers = {
                 copilot = {
                     name = "copilot",
                     module = "blink-copilot",
                     score_offset = 100,
                     async = true,
+                },
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    score_offset = 100,
                 },
             },
         },
