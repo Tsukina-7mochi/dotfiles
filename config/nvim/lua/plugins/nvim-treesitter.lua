@@ -3,7 +3,7 @@ return {
     event = "VimEnter",
     build = ":TSUpdate",
     tag = "v0.9.2",
-    config = function()
+    config = function ()
         local configs = require("nvim-treesitter.configs")
 
         configs.setup({
@@ -12,5 +12,5 @@ return {
             highlight = { enable = true },
             indent = { enable = true },
         })
-    end
-};
+    end,
+}

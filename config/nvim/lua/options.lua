@@ -11,7 +11,6 @@ vim.opt["smartindent"] = true
 vim.opt["termguicolors"] = true
 vim.opt["title"] = true
 
-
 vim.opt["ignorecase"] = true
 vim.opt["smartcase"] = true
 

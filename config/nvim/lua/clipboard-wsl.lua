@@ -18,19 +18,26 @@ local powershell_exe = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershel
 ---@param fromCode string
 ---@param toCode string
 ---@returns string
-local function convert_code_iconv(input, fromCode, toCode)
+local function convert_code_iconv (input, fromCode, toCode)
     local job = vim.system({
         "iconv",
-        "--from-code", fromCode,
-        "--to-code", toCode
+        "--from-code",
+        fromCode,
+        "--to-code",
+        toCode,
     }, { text = true, stdin = input }):wait()
 
     if job.code ~= 0 then
-        vim.notify(string.format(
-            "Failed to convert text from %s to %s: %s\n%s",
-            fromCode, toCode, input,
-            job.stderr or "No error output"
-        ), vim.log.levels.ERROR)
+        vim.notify(
+            string.format(
+                "Failed to convert text from %s to %s: %s\n%s",
+                fromCode,
+                toCode,
+                input,
+                job.stderr or "No error output"
+            ),
+            vim.log.levels.ERROR
+        )
         return ""
     end
 
@@ -44,13 +51,13 @@ end
 
 ---@param input string
 ---@returns string
-local function utf8_to_sjis(input)
+local function utf8_to_sjis (input)
     return convert_code_iconv(input, "utf-8", "shift_jis")
 end
 
 ---@param input string
 ---@returns string
-local function sjis_to_utf8(input)
+local function sjis_to_utf8 (input)
     return convert_code_iconv(input, "shift_jis", "utf-8")
 end
 
@@ -59,7 +66,7 @@ end
 ---@param opts vim.SystemOpts | nil
 ---@param on_exit function | nil
 ---@returns string
-local function call_powershell(cmd, opts, on_exit)
+local function call_powershell (cmd, opts, on_exit)
     -- -NoLogo を指定して Powershell 起動時の権利表示をオフにする
     -- そうしないと paste 時に権利表示も含まれてしまう
     -- -NoProfile を指定して Powershell のプロファイルを読み込まないことにより
@@ -77,7 +84,7 @@ end
 ---召喚された job は裏で実行されるので重くならない
 ---@param contents string[]
 ---@return nil
-local function copy_to_clipboard(contents)
+local function copy_to_clipboard (contents)
     ---@type string[]
     local lines = {}
 
@@ -90,35 +97,28 @@ local function copy_to_clipboard(contents)
     end
     local contentArg = string.format("@('%s')", table.concat(lines, "', '"))
 
-    call_powershell(
-        string.format("Set-Clipboard -Value %s", contentArg),
-        { text = true },
-        function(job)
-            if job.code ~= 0 then
-                vim.notify(string.format(
-                    "Failed to copy to clipboard.\n%s",
-                    utf8_to_sjis(job.stderr) or "No error output"
-                ), vim.log.levels.ERROR)
-                return
-            end
-
-            print(string.format("Copied %d line(s) to clipboard!", #contents))
+    call_powershell(string.format("Set-Clipboard -Value %s", contentArg), { text = true }, function (job)
+        if job.code ~= 0 then
+            vim.notify(
+                string.format("Failed to copy to clipboard.\n%s", utf8_to_sjis(job.stderr) or "No error output"),
+                vim.log.levels.ERROR
+            )
+            return
         end
-    )
+
+        print(string.format("Copied %d line(s) to clipboard!", #contents))
+    end)
 end
 
 ---Powershell 経由で Windows のクリップボードから内容を取得する
 ---@return { [0]: string[], [1]: string }
-local function paste_from_clipboard()
-    local job = call_powershell(
-        "Get-Clipboard -Format Text -Raw",
-        { text = true }
-    ):wait()
+local function paste_from_clipboard ()
+    local job = call_powershell("Get-Clipboard -Format Text -Raw", { text = true }):wait()
     if job.code ~= 0 then
-        vim.notify(string.format(
-            "Failed to paste from clipboard.\n%s",
-            utf8_to_sjis(job.stderr) or "No error output"
-        ), vim.log.levels.ERROR)
+        vim.notify(
+            string.format("Failed to paste from clipboard.\n%s", utf8_to_sjis(job.stderr) or "No error output"),
+            vim.log.levels.ERROR
+        )
         return { {}, vim.fn.getregtype("") }
     end
 
@@ -132,7 +132,7 @@ local function paste_from_clipboard()
     }
 end
 
-local function default_paste()
+local function default_paste ()
     return {
         vim.fn.split(vim.fn.getreg(""), "\n"),
         vim.fn.getregtype(""),
@@ -150,7 +150,7 @@ end
 vim.g.clipboard = {
     name = "WSL Clipboard",
     copy = {
-        ["+"] = function() end,
+        ["+"] = function () end,
         ["*"] = copy_to_clipboard,
     },
     paste = {

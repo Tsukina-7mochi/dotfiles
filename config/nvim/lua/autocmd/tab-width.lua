@@ -1,12 +1,12 @@
 ---@param tab_width table<string, number>
-local set_auto_tab_width = function(tab_width)
+local set_auto_tab_width = function (tab_width)
     for lang, width in pairs(tab_width) do
         vim.api.nvim_create_autocmd("FileType", {
             pattern = lang,
-            callback = function()
+            callback = function ()
                 vim.opt_local.shiftwidth = width
                 vim.opt_local.tabstop = width
-            end
+            end,
         })
     end
 end

@@ -1,12 +1,12 @@
 return {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
-    config = function()
-        require("lualine").setup {
+    config = function ()
+        require("lualine").setup({
             options = {
                 icons_enabled = false,
-                theme = "nord"
+                theme = "nord",
             },
-        }
-    end
+        })
+    end,
 }

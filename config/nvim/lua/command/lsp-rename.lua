@@ -1,4 +1,4 @@
-local function create_rename_params(old_filename, new_filename)
+local function create_rename_params (old_filename, new_filename)
     local old_uri = vim.uri_from_fname(old_filename)
     local new_uri = vim.uri_from_fname(new_filename)
     return {
@@ -6,7 +6,7 @@ local function create_rename_params(old_filename, new_filename)
             {
                 oldUri = old_uri,
                 newUri = new_uri,
-            }
+            },
         },
     }
 end
@@ -15,7 +15,7 @@ end
 ---@param edit any
 ---@param old_filename string
 ---@param new_filename string
-local function post_request_reame(client, edit, old_filename, new_filename)
+local function post_request_reame (client, edit, old_filename, new_filename)
     local rename_params = create_rename_params(old_filename, new_filename)
 
     if edit then
@@ -35,11 +35,11 @@ end
 ---@param client vim.lsp.Client
 ---@param old_filename string
 ---@param new_filename string
-local function request_rename(client, old_filename, new_filename)
+local function request_rename (client, old_filename, new_filename)
     local rename_params = create_rename_params(old_filename, new_filename)
 
     vim.notify("Using " .. client.name, vim.log.levels.INFO)
-    client:request("workspace/willRenameFiles", rename_params, function(err, result)
+    client:request("workspace/willRenameFiles", rename_params, function (err, result)
         if err then
             vim.notify("Error from language server: " .. err.message, vim.log.levels.ERROR)
             return
@@ -49,7 +49,7 @@ local function request_rename(client, old_filename, new_filename)
     end)
 end
 
-vim.api.nvim_create_user_command("RenameFile", function(opts)
+vim.api.nvim_create_user_command("RenameFile", function (opts)
     local old_filename = vim.api.nvim_buf_get_name(0)
     local new_filename = vim.fs.abspath(opts.fargs[1])
 
@@ -65,10 +65,10 @@ vim.api.nvim_create_user_command("RenameFile", function(opts)
 
     vim.ui.select(clients, {
         prompt = "Select LSP client",
-        format_item = function(item)
+        format_item = function (item)
             return item.name
         end,
-    }, function(client)
+    }, function (client)
         if client then
             request_rename(client, old_filename, new_filename)
         end
