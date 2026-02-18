@@ -71,6 +71,8 @@ return {
             ["<Tab>"] = { next_or_show, "fallback" },
             ["<S-Tab>"] = { prev_or_show, "fallback" },
             ["<C-k>"] = { toggle_docs, "fallback" },
+            ["<Up>"] = { "select_prev", "fallback" },
+            ["<Down>"] = { "select_next", "fallback" },
         },
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot" },
