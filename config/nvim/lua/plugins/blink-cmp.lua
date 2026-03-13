@@ -1,6 +1,3 @@
----@module 'blink.cmp'
----@module 'lazy'
-
 local has_words_before_cursor = function ()
     local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
     local row_str = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1]
@@ -51,15 +48,6 @@ return {
     dependencies = {
         "rafamadriz/friendly-snippets",
         "fang2hou/blink-copilot",
-        {
-            "folke/lazydev.nvim",
-            ft = "lua",
-            opts = {
-                library = {
-                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                },
-            },
-        },
     },
     version = "1.*",
 
@@ -75,18 +63,13 @@ return {
             ["<Down>"] = { "select_next", "fallback" },
         },
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot" },
+            default = { "lsp", "path", "snippets", "buffer", "copilot" },
             providers = {
                 copilot = {
                     name = "copilot",
                     module = "blink-copilot",
                     score_offset = 100,
                     async = true,
-                },
-                lazydev = {
-                    name = "LazyDev",
-                    module = "lazydev.integrations.blink",
-                    score_offset = 100,
                 },
             },
         },
