@@ -36,6 +36,8 @@ end
 local js_ts_formatter = function (bufnr)
     if is_formatter_available("biome", bufnr) then
         return { "biome" }
+    elseif is_formatter_available("oxlint", bufnr) or is_formatter_available("oxfmt", bufnr) then
+        return { "oxlint", "oxfmt" }
     elseif is_formatter_available("deno", bufnr) then
         return { "deno" }
     end
