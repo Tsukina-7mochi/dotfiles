@@ -158,6 +158,8 @@ if [ -d "$nim_path" ]; then
     export PATH="$NIM_INSTALL/bin:$PATH"
 fi
 
+source_if_exists "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
 # ghcup
 source_if_exists "/home/ts7m/.ghcup/env" 
 
@@ -200,7 +202,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
 
 ################
 ### START UP ###
