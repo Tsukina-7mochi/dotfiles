@@ -81,4 +81,4 @@
     dlg = log --decorate
     glg = log --oneline --graph --decorate
     deletemerged = !git branch --merged main | grep -v main | xargs git branch -d
-    scribe = !git diff --staged --minimal --no-color | claude --model opus -p 'Create a comprehensive commit message from the diff. Respond only with commit message body.' | git commit -F -
+    scribe = "!f(){ git diff --staged --minimal --no-color | claude --model opus -p \"Create a comprehensive commit message from the diff. Respond only with commit message body. $1\" | git commit -F -;};f"
