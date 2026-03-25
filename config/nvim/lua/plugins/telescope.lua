@@ -68,11 +68,9 @@ return {
                 defaults = {
                     mappings = {
                         i = {
-                            ["<S-Enter>"] = actions.file_tab,
                             ["<Esc>"] = actions.close,
                         },
                         n = {
-                            ["<S-Enter>"] = actions.file_tab,
                             ["<Esc>"] = actions.close,
                         },
                     },
