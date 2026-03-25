@@ -76,6 +76,7 @@
     br = branch
     diffs = diff --staged
     forcepush = push --force-with-lease --force-if-includes
+    forcesync = !git reset --hard "origin/$(git br --show-current)"
     lg = log --oneline -n 10
     llg = log --oneline --decorate
     dlg = log --decorate
