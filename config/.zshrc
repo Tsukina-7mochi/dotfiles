@@ -80,7 +80,10 @@ function add_path_if_exists() {
 }
 
 add_path_if_exists "$HOME/.local/bin" 
-add_path_if_exists "$HOME/dotfiles/util" 
+
+if [ ! -x "$(command -v open)" ]; then
+    alias open="$HOME/dotfiles/util/open" 
+fi
 
 
 ####################
