@@ -225,8 +225,8 @@ else
 fi
 
 # powerlevel10k
-source "$XDG_DATA_HOME/.p10k.zsh"
-source "$HOME/.local/share/powerlevel10k/powerlevel10k.zsh-theme"
+source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
+source "$XDG_DATA_HOME/powerlevel10k/.p10k.zsh"
 
 
 ################
