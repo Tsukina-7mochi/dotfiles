@@ -33,9 +33,13 @@ check_availability wget
 
 echo -e "\n\033[1mQOL\033[0m\n"
 check_availability bat
+check_availability claude "Claude Code"
+check_availability codex "Codex CLI"
+check_availability copilot "Copilot CLI"
 check_availability eza
 check_availability fastfetch
 check_availability fzf
+check_availability gemini "Gemini CLI"
 check_availability htop
 check_availability jq
 check_availability nvim "NeoVim"
