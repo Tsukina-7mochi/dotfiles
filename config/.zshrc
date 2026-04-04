@@ -79,10 +79,10 @@ function add_path_if_exists() {
     [ -d "$1" ] && export PATH="$1:$PATH"
 }
 
-add_path_if_exists "$HOME/.local/bin" 
+add_path_if_exists "$HOME/.local/bin"
 
 if [ ! -x "$(command -v open)" ]; then
-    alias open="$HOME/dotfiles/util/open" 
+    alias open="$HOME/dotfiles/util/open"
 fi
 
 
@@ -91,7 +91,7 @@ fi
 ####################
 
 function source_if_exists() {
-    [ -s "$1" ] && source "$1" 
+    [ -s "$1" ] && source "$1"
 }
 
 # Homebrew
@@ -108,7 +108,7 @@ local nvm_path="$XDG_CONFIG_HOME/.nvm"
 if [ -d "$nvm_path" ]; then
     export NVM_DIR="$nvm_path"
 
-    source_if_exists "$NVM_DIR/nvm.sh" 
+    source_if_exists "$NVM_DIR/nvm.sh"
     source_if_exists "$NVM_DIR/bash_completion"
 fi
 
@@ -140,7 +140,7 @@ if [ -d "$bun_path" ]; then
     export BUN_INSTALL="$bun_path"
     export PATH="$BUN_INSTALL/bin:$PATH"
 
-    source_if_exists "$HOME/.bun/_bun" 
+    source_if_exists "$HOME/.bun/_bun"
 fi
 
 # rustup
@@ -161,10 +161,12 @@ if [ -d "$nim_path" ]; then
     export PATH="$NIM_INSTALL/bin:$PATH"
 fi
 
+# nix
 source_if_exists "$HOME/.nix-profile/etc/profile.d/nix.sh"
+source_if_exists "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 # ghcup
-source_if_exists "/home/ts7m/.ghcup/env" 
+source_if_exists "/home/ts7m/.ghcup/env"
 
 # gradle
 add_path_if_exists "/opt/gradle/gradle-9.2.1/bin"
