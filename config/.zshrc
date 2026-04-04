@@ -79,10 +79,10 @@ function add_path_if_exists() {
     [ -d "$1" ] && export PATH="$1:$PATH"
 }
 
-add_path_if_exists "$HOME/.local/bin" 
+add_path_if_exists "$HOME/.local/bin"
 
 if [ ! -x "$(command -v open)" ]; then
-    alias open="$HOME/dotfiles/util/open" 
+    alias open="$HOME/dotfiles/util/open"
 fi
 
 
@@ -91,7 +91,7 @@ fi
 ####################
 
 function source_if_exists() {
-    [ -s "$1" ] && source "$1" 
+    [ -s "$1" ] && source "$1"
 }
 
 # Homebrew
@@ -108,7 +108,7 @@ local nvm_path="$XDG_CONFIG_HOME/.nvm"
 if [ -d "$nvm_path" ]; then
     export NVM_DIR="$nvm_path"
 
-    source_if_exists "$NVM_DIR/nvm.sh" 
+    source_if_exists "$NVM_DIR/nvm.sh"
     source_if_exists "$NVM_DIR/bash_completion"
 fi
 
@@ -140,7 +140,7 @@ if [ -d "$bun_path" ]; then
     export BUN_INSTALL="$bun_path"
     export PATH="$BUN_INSTALL/bin:$PATH"
 
-    source_if_exists "$HOME/.bun/_bun" 
+    source_if_exists "$HOME/.bun/_bun"
 fi
 
 # rustup
@@ -164,7 +164,7 @@ fi
 source_if_exists "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # ghcup
-source_if_exists "/home/ts7m/.ghcup/env" 
+source_if_exists "/home/ts7m/.ghcup/env"
 
 # gradle
 add_path_if_exists "/opt/gradle/gradle-9.2.1/bin"
@@ -225,7 +225,7 @@ else
 fi
 
 # powerlevel10k
-source "$HOME/.p10k.zsh"
+source "$XDG_DATA_HOME/.p10k.zsh"
 source "$HOME/.local/share/powerlevel10k/powerlevel10k.zsh-theme"
 
 
