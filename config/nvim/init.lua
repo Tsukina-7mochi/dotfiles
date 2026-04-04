@@ -5,6 +5,7 @@ end
 vim.scriptencoding = "utf-8"
 vim.wo.number = true
 
+require("lazynvim")
 require("keymaps")
 require("autocmd")
 require("command")
