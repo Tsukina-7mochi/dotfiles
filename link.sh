@@ -14,6 +14,7 @@ function link_config() {
 }
 
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+XDG_DATA_HOME="$HOME/.local/share"
 
 link_config .zshrc "$HOME/.zshrc"
 link_config .tmux.conf "$XDG_CONFIG_HOME/tmux/.tmux.conf"
