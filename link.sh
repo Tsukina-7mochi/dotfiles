@@ -17,7 +17,7 @@ XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 XDG_DATA_HOME="$HOME/.local/share"
 
 link_config .zshrc "$HOME/.zshrc"
-link_config .tmux.conf "$XDG_CONFIG_HOME/tmux/.tmux.conf"
+link_config .tmux.conf "$XDG_CONFIG_HOME/tmux/tmux.conf"
 link_config .p10k.zsh "$XDG_DATA_HOME/powerlevel10k/.p10k.zsh"
 link_config .vimrc "$XDG_CONFIG_HOME/vim/vimrc"
 link_config .gitconfig "$XDG_CONFIG_HOME/git/config"
