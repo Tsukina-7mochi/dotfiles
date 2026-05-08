@@ -10,7 +10,7 @@ function link_config() {
     if [[ -f "$2" && ! -L "$2" ]]; then
         cp -rvf "$2" "$2.bak"
     fi
-    ln -svf "$(pwd)/config/$1" "$2"
+    ln -snvf "$(pwd)/config/$1" "$2"
 }
 
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
