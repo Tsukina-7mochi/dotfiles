@@ -112,7 +112,7 @@ if [ -d "$nvm_path" ]; then
     source_if_exists "$NVM_DIR/bash_completion"
 fi
 
-local pnpm_path="/home/ts7m/.local/share/pnpm"
+local pnpm_path="$HOME/.local/share/pnpm"
 if [ -d "$pnpm_path" ]; then
     export PNPM_HOME="$pnpm_path"
     export PATH="$PNPM_HOME:$PATH"
@@ -150,7 +150,9 @@ add_path_if_exists "$HOME/.cargo/bin"
 local go_path="/usr/local/go/bin"
 if [ -d "$go_path" ]; then
     export PATH="$go_path:$PATH"
-    export GOPATH="$HOME/go"
+fi
+if [ -x "go" ]; then
+    export GOPATH="$HOME/.local/bin/go"
     export PATH="$GOPATH/bin:$PATH"
 fi
 
