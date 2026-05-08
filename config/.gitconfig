@@ -19,7 +19,7 @@
     verbose = true
 
 [core]
-    editor = nvim
+    editor = vim
     excludesfile = ~/.config/git/.gitignore
     ignorecase = false
 
