@@ -115,7 +115,7 @@ fi
 local pnpm_path="$HOME/.local/share/pnpm"
 if [ -d "$pnpm_path" ]; then
     export PNPM_HOME="$pnpm_path"
-    export PATH="$PNPM_HOME:$PATH"
+    export PATH="$PNPM_HOME/bin:$PATH"
 fi
 
 # uv
