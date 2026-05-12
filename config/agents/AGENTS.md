@@ -32,5 +32,5 @@ This file provides guidance to Coding Agents when working with code.
 - No emojis in code, comments, or documentation.
 - Prefer immutability - make effort not to mutate objects or arrays.
 - Many small files over few large files.
-- 200-400 lines typical, 800 max per file.
+- 200-400 lines max per file.
 - Prioritize consistency and semantics.
