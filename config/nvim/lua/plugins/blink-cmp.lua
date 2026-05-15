@@ -46,7 +46,6 @@ end
 return {
     "saghen/blink.cmp",
     dependencies = {
-        "rafamadriz/friendly-snippets",
         "fang2hou/blink-copilot",
     },
     version = "1.*",
@@ -63,7 +62,7 @@ return {
             ["<Down>"] = { "select_next", "fallback" },
         },
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "copilot" },
+            default = { "lsp", "path", "buffer", "copilot" },
             providers = {
                 copilot = {
                     name = "copilot",
