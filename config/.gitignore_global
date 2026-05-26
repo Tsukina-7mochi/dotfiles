@@ -1,6 +1,6 @@
 .env
 *.local.*
-.claude/worktree
+/.claude/worktrees
 
 Session.vim
 .DS_Store
