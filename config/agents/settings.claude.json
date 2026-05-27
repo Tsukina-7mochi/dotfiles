@@ -1,4 +1,5 @@
 {
+  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
@@ -8,5 +9,6 @@
     "typescript-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true
   },
-  "effortLevel": "medium"
+  "effortLevel": "high",
+  "skipAutoPermissionPrompt": true
 }
