@@ -10,5 +10,6 @@
     "gopls-lsp@claude-plugins-official": true
   },
   "effortLevel": "high",
+  "tui": "fullscreen",
   "skipAutoPermissionPrompt": true
 }
