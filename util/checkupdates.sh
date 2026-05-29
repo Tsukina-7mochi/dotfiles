@@ -10,7 +10,12 @@ echo -n "${MESSAGE} "
 tput civis
 trap "tput cnorm" EXIT
 
-printf "\n$(checkupdates | wc -l) updates available." &
+if [ -x "$(command -v brew)" ]; then
+    printf "\n$(brew outdated -q | wc -l) updates available." &
+else
+    printf "\n$(checkupdates | wc -l) updates available." &
+fi
+
 pid="$!"
 # if this script is killed, kill the checkupdates
 trap "kill $pid 2> /dev/null" EXIT
