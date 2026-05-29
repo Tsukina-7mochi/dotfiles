@@ -15,4 +15,4 @@ require("command")
 require("lsp")
 require("clipboard-wsl")
 
-require("onedark").load()
+require("colorscheme")
