@@ -47,6 +47,9 @@ return {
     "saghen/blink.cmp",
     dependencies = {
         "fang2hou/blink-copilot",
+        "mattn/emmet-vim",
+        "Tsukina-7mochi/blink-emmet-vim",
+        -- { dir = "/home/ts7m/workspace/blink-emmet-vim" },
     },
     version = "1.*",
 
@@ -62,13 +65,18 @@ return {
             ["<Down>"] = { "select_next", "fallback" },
         },
         sources = {
-            default = { "lsp", "path", "buffer", "copilot" },
+            default = { "lsp", "path", "buffer", "emmet", "copilot" },
             providers = {
                 copilot = {
                     name = "copilot",
                     module = "blink-copilot",
                     score_offset = 100,
                     async = true,
+                },
+                emmet = {
+                    name = "emmet",
+                    module = "blink_emmet_vim",
+                    score_offset = 101,
                 },
             },
         },
