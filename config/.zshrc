@@ -238,6 +238,10 @@ source "$XDG_DATA_HOME/powerlevel10k/.p10k.zsh"
 
 [ -s "$HOME/.env" ] && source "$HOME/.env"
 
+if [ -x "$(command -v mise)" ]; then
+  eval "$(mise activate zsh)"
+fi
+
 
 ############
 ### MISC ###
