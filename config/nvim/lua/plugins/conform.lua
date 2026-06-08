@@ -68,6 +68,8 @@ return {
                 typescript = js_ts_formatter,
                 typescriptreact = js_ts_formatter,
                 ["typescript.jsx"] = js_ts_formatter,
+                css = js_ts_formatter,
+                markdown = js_ts_formatter,
                 lua = { "stylua" },
                 typespec = { "tsp" },
             },
