@@ -29,8 +29,9 @@ This file provides guidance to Coding Agents when working with code.
 
 ### Code Style
 
-- No emojis in code, comments, or documentation.
+- No emojis and Non-ASCII signs in code, comments, or documentation.
 - Prefer immutability - make effort not to mutate objects or arrays.
 - Many small files over few large files.
 - 200-400 lines max per file.
 - Prioritize consistency and semantics.
+- Prefer nested list over tables in documentation.

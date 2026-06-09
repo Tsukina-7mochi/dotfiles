@@ -1,5 +1,5 @@
 {
-  "model": "opusplan",
+  "model": "claude-opus-4-7[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
@@ -11,6 +11,6 @@
     "lua-lsp@claude-plugins-official": true
   },
   "effortLevel": "high",
-  "tui": "fullscreen",
+  "tui": "default",
   "skipAutoPermissionPrompt": true
 }
