@@ -78,6 +78,26 @@ return {
                     module = "blink_emmet_vim",
                     score_offset = 101,
                 },
+                path = {
+                    opts = {
+                        trailing_slash = false,
+                        label_trailing_slash = true,
+                    },
+                },
+                cmdline = {
+                    transform_items = function (_, items)
+                        -- remove tailing slash
+                        for _, item in ipairs(items) do
+                            if item.insertText and item.insertText:sub(-1) == "/" then
+                                item.insertText = item.insertText:sub(1, -2)
+                            end
+                            if item.textEdit and item.textEdit.newText and item.textEdit.newText:sub(-1) == "/" then
+                                item.textEdit.newText = item.textEdit.newText:sub(1, -2)
+                            end
+                        end
+                        return items
+                    end,
+                },
             },
         },
         fuzzy = { implementation = "prefer_rust_with_warning" },
@@ -98,5 +118,6 @@ return {
             },
         },
     },
+
     opts_extend = { "sources.default" },
 }
