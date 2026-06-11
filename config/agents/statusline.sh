@@ -17,7 +17,7 @@ braille() {
   printf '%s' "${levels[$i]}"
 }
 
-echo -n "[$MODEL / $EFFORT effort] "
+printf "\033[38;5;209m[%s / %s effort]\033[0m " "$MODEL" "$EFFORT"
 echo -n "$GIT_BRANCH / "
 echo -n "ctx ${CONTEXT}% $(braille $CONTEXT) / "
 echo -n "5h ${FIVE_HOUR}% $(braille $FIVE_HOUR) / "
