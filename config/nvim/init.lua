@@ -10,9 +10,9 @@ require("keymaps")
 
 require("lazynvim")
 
-require("autocmd")
-require("command")
-require("lsp")
 require("clipboard-wsl")
-
 require("colorscheme")
+require("filetype")
+require("indentation")
+require("lsp")
+require("treesitter")
