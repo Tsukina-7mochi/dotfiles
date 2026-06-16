@@ -1,5 +1,5 @@
 set autoread      " automatically reload file when changed
-set clipboard=unnamedplus " enable system clipboard
+set clipboard=unnamed,unnamedplus " enable system clipboard
 set completeopt=menuone,noinsert,noselect " completion options
 set cursorline    " highlight current line
 set expandtab     " use spaces instead of tabs
