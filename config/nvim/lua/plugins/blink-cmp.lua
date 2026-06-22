@@ -102,6 +102,10 @@ return {
         },
         fuzzy = { implementation = "prefer_rust_with_warning" },
         completion = {
+            trigger = {
+                show_on_insert = false,
+                show_on_accept_on_trigger_character = false,
+            },
             menu = {
                 draw = {
                     columns = { { "label", gap = 1 }, { "kind" } },
