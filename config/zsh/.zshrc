@@ -19,7 +19,10 @@ export DOTFILES_ROOT="${${(%):-%N}:A:h:h:h}"
 [ -s "$HOME/.env" ] && source "$HOME/.env"
 
 add_path_if_exists "$HOME/.local/bin"
-add_path_if_exists "$DOTFILES_ROOT/util"
+
+if [ -d "$DOTFILES_ROOT/util" ]; then
+	export PATH="$PATH:$DOTFILES_ROOT/util"
+fi
 
 
 ###########
