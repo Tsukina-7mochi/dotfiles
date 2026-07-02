@@ -14,7 +14,7 @@ function source_if_exists() {
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export DOTFILES_ROOT="${${(%):-%N}:A:h:h}"
+export DOTFILES_ROOT="${${(%):-%N}:A:h:h:h}"
 
 [ -s "$HOME/.env" ] && source "$HOME/.env"
 
