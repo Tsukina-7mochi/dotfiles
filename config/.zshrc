@@ -169,9 +169,6 @@ source_if_exists "$HOME/.nix-profile/etc/profile.d/nix.sh"
 # ghcup
 source_if_exists "/home/ts7m/.ghcup/env"
 
-# gradle
-add_path_if_exists "/opt/gradle/gradle-9.2.1/bin"
-
 # java
 local java_path="/usr/lib/jvm/java-21-openjdk"
 if [ -d "$java_path" ]; then
@@ -249,6 +246,8 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-5"
 ############
 ### MISC ###
 ############
+
+source ~/dotfiles/util/gradle.sh
 
 if [ -n "$CLAUDECODE" ]; then
     unalias cd
