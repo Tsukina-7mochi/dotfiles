@@ -1,10 +1,25 @@
-###########
-### XDG ###
-###########
+function add_path_if_exists() {
+    [ -d "$1" ] && export PATH="$1:$PATH"
+}
+
+function source_if_exists() {
+    [ -s "$1" ] && source "$1"
+}
+
+
+###################
+### PATHS & ENV ###
+###################
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export DOTFILES_ROOT="${${(%):-%N}:A:h:h}"
+
+[ -s "$HOME/.env" ] && source "$HOME/.env"
+
+add_path_if_exists "$HOME/.local/bin"
+add_path_if_exists "$DOTFILES_ROOT/util"
 
 
 ###########
@@ -71,28 +86,9 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 
 
-#############
-### PATHS ###
-#############
-
-function add_path_if_exists() {
-    [ -d "$1" ] && export PATH="$1:$PATH"
-}
-
-add_path_if_exists "$HOME/.local/bin"
-
-if [ ! -x "$(command -v open)" ]; then
-    alias open="$HOME/dotfiles/util/open"
-fi
-
-
 ####################
 ### APPLICATIONS ###
 ####################
-
-function source_if_exists() {
-    [ -s "$1" ] && source "$1"
-}
 
 # Homebrew
 add_path_if_exists "/opt/homebrew/bin"
@@ -194,6 +190,10 @@ if [ -x "$(command -v eza)" ]; then
     alias tree="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
 fi
 
+# claude code
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-fable-5"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-5"
+
 # Enable color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -205,6 +205,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+#################
+### FUNCTIONS ###
+#################
+
+source_if_exists "$DOTFILES_ROOT/config/zsh/function/gradle.sh"
+
 
 ################
 ### START UP ###
@@ -228,26 +235,15 @@ fi
 source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
 source "$XDG_DATA_HOME/powerlevel10k/.p10k.zsh"
 
-
-################
-### LOAD ENV ###
-################
-
-[ -s "$HOME/.env" ] && source "$HOME/.env"
-
+#mise
 if [ -x "$(command -v mise)" ]; then
   eval "$(mise activate zsh)"
 fi
-
-export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-fable-5"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-5"
 
 
 ############
 ### MISC ###
 ############
-
-source ~/dotfiles/util/gradle.sh
 
 if [ -n "$CLAUDECODE" ]; then
     unalias cd
