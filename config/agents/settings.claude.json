@@ -1,5 +1,5 @@
 {
-  "model": "claude-opus-4-7[1m]",
+  "model": "opusplan",
   "hooks": {
     "Notification": [
       {
@@ -35,7 +35,7 @@
     "lua-lsp@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true
   },
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "tui": "default",
   "skipAutoPermissionPrompt": true
 }

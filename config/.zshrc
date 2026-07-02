@@ -242,6 +242,9 @@ if [ -x "$(command -v mise)" ]; then
   eval "$(mise activate zsh)"
 fi
 
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-fable-5"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-5"
+
 
 ############
 ### MISC ###
