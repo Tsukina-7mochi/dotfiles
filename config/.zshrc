@@ -13,8 +13,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # History
 HISTFILE="$HOME/.histfile"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100
+SAVEHIST=100
 
 # Disallow duplication in history
 setopt EXTENDED_HISTORY
