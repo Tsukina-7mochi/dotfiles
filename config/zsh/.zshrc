@@ -96,7 +96,10 @@ add_path_if_exists "/opt/homebrew/bin"
 # zoxide
 if [ -x "$(command -v zoxide)" ]; then
     eval "$(zoxide init zsh)"
-    alias cd="z"
+
+	if [ -z "$CLAUDECODE" ]; then
+		alias cd="z"
+	fi
 fi
 
 # nvm
@@ -184,10 +187,12 @@ source_if_exists "$HOME/google-cloud-sdk/completion.zsh.inc"
 # eza
 if [ -x "$(command -v eza)" ]; then
     local eza_ignore_paths="node_modules|.git|.cache"
-    alias ls='eza --git'
-    alias ll='eza --git -l'
-    alias la='eza --git -al'
-    alias tree="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
+	if [ -z "$CLAUDECODE" ]; then
+		alias ls='eza --git'
+		alias ll='eza --git -l'
+		alias la='eza --git -al'
+		alias tree="eza --tree --level=3 --ignore-glob=\"$eza_ignore_paths\""
+	fi
 fi
 
 # claude code
@@ -198,12 +203,14 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-5"
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+	if [ -z "$CLAUDECODE" ]; then
+		alias dir='dir --color=auto'
+		alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+		alias grep='grep --color=auto'
+		alias fgrep='fgrep --color=auto'
+		alias egrep='egrep --color=auto'
+	fi
 fi
 
 #################
@@ -240,17 +247,3 @@ if [ -x "$(command -v mise)" ]; then
   eval "$(mise activate zsh)"
 fi
 
-
-############
-### MISC ###
-############
-
-if [ -n "$CLAUDECODE" ]; then
-    unalias cd
-    unalias ls
-    unalias dir
-    unalias vdir
-    unalias grep
-    unalias fgrep
-    unalias egrep
-fi
