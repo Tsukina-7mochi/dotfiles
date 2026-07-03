@@ -177,6 +177,11 @@ if [ -d "$java_path" ]; then
     export JAVA_HOME="$java_path"
     export PATH=$java_path/bin:$PATH
 fi
+local java_path="/opt/homebrew/opt/openjdk/bin:$PATH"
+if [ -d "$java_path" ]; then
+    export JAVA_HOME="$java_path"
+    export PATH=$java_path/bin:$PATH
+fi
 
 # clip.exe
 if [ -f "/mnt/c/Windows/System32/clip.exe" ]; then
