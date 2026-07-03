@@ -1,4 +1,8 @@
 {
+  "env": {
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-fable-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5"
+  },
   "model": "opusplan",
   "hooks": {
     "Notification": [
@@ -35,7 +39,7 @@
     "lua-lsp@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "tui": "default",
   "skipAutoPermissionPrompt": true
 }

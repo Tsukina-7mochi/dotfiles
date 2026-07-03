@@ -198,10 +198,6 @@ if [ -x "$(command -v eza)" ]; then
 	fi
 fi
 
-# claude code
-export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-fable-5"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-5"
-
 # Enable color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
