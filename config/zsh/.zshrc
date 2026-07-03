@@ -16,7 +16,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export DOTFILES_ROOT="${${(%):-%N}:A:h:h:h}"
 
-[ -s "$HOME/.env" ] && source "$HOME/.env"
+[ -s "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 add_path_if_exists "$HOME/.local/bin"
 
