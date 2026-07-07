@@ -177,7 +177,12 @@ if [ -d "$java_path" ]; then
     export JAVA_HOME="$java_path"
     export PATH=$java_path/bin:$PATH
 fi
-local java_path="/opt/homebrew/opt/openjdk/bin:$PATH"
+local java_path="/opt/homebrew/opt/openjdk/bin"
+if [ -d "$java_path" ]; then
+    export JAVA_HOME="$java_path"
+    export PATH=$java_path/bin:$PATH
+fi
+local java_path="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 if [ -d "$java_path" ]; then
     export JAVA_HOME="$java_path"
     export PATH=$java_path/bin:$PATH
