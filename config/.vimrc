@@ -29,7 +29,7 @@ syntax enable  " enable syntax highlighting
 
 
 " key config
-let mapleader = "\<space>"
+let mapleader = " "
 
 inoremap <silent> jj <ESC>
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch<Return>
@@ -38,3 +38,15 @@ nnoremap <silent> <Leader>b :tabprevious<Return>
 
 nnoremap ; :
 vnoremap ; :
+
+" ideavim
+if has('ide')
+	nnoremap <leader><leader> :action ShowHoverInfo<Return>
+	nnoremap <C-k><C-k> :action ShowHoverInfo<Return>
+	nnoremap <C-k><C-l> :action ShowHoverInfo<Return>
+	nnoremap <leader>ff :action SearchEverywhere<Return>
+	nnoremap <leader>fg :action SearchEverywhere<Return>
+	nnoremap gr :action FindUsages<Return>
+	command! Rename :action RenameElement
+	nnoremap Y y$
+endif
