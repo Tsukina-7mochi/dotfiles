@@ -39,6 +39,7 @@
     "lua-lsp@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true
   },
+  "language": "japanese",
   "effortLevel": "high",
   "tui": "default",
   "skipAutoPermissionPrompt": true
