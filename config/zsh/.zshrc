@@ -31,8 +31,8 @@ fi
 
 # History
 HISTFILE="$HOME/.histfile"
-HISTSIZE=100
-SAVEHIST=100
+HISTSIZE=1000
+SAVEHIST=1000
 
 # Disallow duplication in history
 setopt EXTENDED_HISTORY
