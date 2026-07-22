@@ -1,23 +1,26 @@
----@param width integer
----@param use_space boolean
-local function set_indentation (width, use_space)
-    vim.opt_local.expandtab = use_space
-    vim.opt_local.tabstop = width
-    vim.opt_local.softtabstop = width
-    vim.opt_local.shiftwidth = width
+---@class IndentationOptions
+---@field width integer
+---@field use_space boolean
+
+---@param opts IndentationOptions
+local function set_indentation (opts)
+    vim.opt_local.expandtab = opts.use_space
+    vim.opt_local.tabstop = opts.width
+    vim.opt_local.softtabstop = opts.width
+    vim.opt_local.shiftwidth = opts.width
 end
 
-vim.api.nvim_create_user_command("UseTabIndent", function (opts)
-    local width = tonumber(opts.fargs[1])
+vim.api.nvim_create_user_command("UseTabIndent", function (cmd_opts)
+    local width = tonumber(cmd_opts.fargs[1])
     if width ~= nil then
-        set_indentation(width, false)
+        set_indentation({ width = width, use_space = false })
     end
 end, { nargs = 1 })
 
-vim.api.nvim_create_user_command("UseSpaceIndent", function (opts)
-    local width = tonumber(opts.fargs[1])
+vim.api.nvim_create_user_command("UseSpaceIndent", function (cmd_opts)
+    local width = tonumber(cmd_opts.fargs[1])
     if width ~= nil then
-        set_indentation(width, false)
+        set_indentation({ width = width, use_space = true })
     end
 end, { nargs = 1 })
 
@@ -26,12 +29,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         local lines = vim.api.nvim_buf_get_lines(0, 0, 100, false)
         for _, line in ipairs(lines) do
             if line:match("^(\t+)") then
-                set_indentation(4, false)
+                set_indentation({ width = 4, use_space = false })
                 return
             end
             local spaces = line:match("^( +)%S")
             if spaces then
-                set_indentation(#spaces, false)
+                set_indentation({ width = #spaces, use_space = true })
                 return
             end
         end
