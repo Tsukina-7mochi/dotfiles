@@ -28,3 +28,5 @@ vim.opt.sidescrolloff = 8
 vim.opt.laststatus = 0
 vim.opt.statusline = "─"
 vim.opt.fillchars = { stl = "─", stlnc = "─" }
+
+vim.o.winborder = "single"
