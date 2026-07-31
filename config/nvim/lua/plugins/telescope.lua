@@ -58,6 +58,13 @@ return {
                 ":Telescope file_browser <CR><ESC>",
                 desc = "Telescope file browser at the workspace root",
             },
+            {
+                "<leader>fG",
+                function ()
+                    require("telescope.builtin").lsp_dynamic_workspace_symbols()
+                end,
+                desc = "Dynamic Workspace Symbols",
+            },
         },
         event = "VimEnter",
         config = function ()
@@ -82,6 +89,10 @@ return {
                     find_files = {
                         hidden = true,
                         find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                    },
+                    lsp_dynamic_workspace_symbols = {
+                        fname_width = 40,
+                        symbol_width = 40,
                     },
                 },
                 extensions = {
