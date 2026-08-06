@@ -11,7 +11,6 @@ end
 return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "InsertEnter",
     keys = {
         { "<leader>ce", enableCopilot, desc = "Enable Copilot" },
         { "<leader>cd", disableCopilot, desc = "Disable Copilot" },
