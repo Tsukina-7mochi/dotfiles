@@ -57,6 +57,9 @@
     autoUpdate = true
     enabled = true
 
+[submodule]
+	recurse = true
+
 [tag]
     sort = -version:refname
 
