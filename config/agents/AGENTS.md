@@ -16,11 +16,10 @@ This file provides guidance to Coding Agents when working with code.
 - When you completed a change with more than 3 files or 100 lines, use code-reviewer subagent.
 - When you updated security-related (auth*, security*, credential*) files, use security-auditor agent.
 
-## Tools
-
-- Use the AskUserQuestion tool to repeatedly ask questions until all uncertainties are resolved.
-
 ## Personal Preferences
+
+- Use the AskUserQuestion tool repeatedly until all uncertainties are resolved.
+- When user asks to add git worktree, make them in `.agents/worktrees` (`.claude/worktrees` if you are claude code).
 
 ### Privacy
 
@@ -35,3 +34,8 @@ This file provides guidance to Coding Agents when working with code.
 - 200-400 lines max per file.
 - Prioritize consistency and semantics.
 - Prefer nested list over tables in documentation.
+
+### Code Comments & Documentations
+
+- They must be snapshot. DO NOT write changelogs.
+- Write more is worse than write nothing. Only write when you require investigation to understand your work.
