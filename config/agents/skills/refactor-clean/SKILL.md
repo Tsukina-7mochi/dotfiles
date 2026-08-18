@@ -1,3 +1,8 @@
+---
+name: refactor-clean
+description: Safely identify and remove dead code with test verification. Runs knip, depcheck and ts-prune, reports findings by severity, and deletes only what keeps the test suite green.
+---
+
 # Refactor Clean
 
 Safely identify and remove dead code with test verification:
