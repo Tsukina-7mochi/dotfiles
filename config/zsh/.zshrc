@@ -172,20 +172,15 @@ source_if_exists "$HOME/.nix-profile/etc/profile.d/nix.sh"
 source_if_exists "/home/ts7m/.ghcup/env"
 
 # java
-local java_path="/usr/lib/jvm/java-21-openjdk"
+local java_path="usr/lib/jvm/java-21-openjdk"
 if [ -d "$java_path" ]; then
     export JAVA_HOME="$java_path"
-    export PATH=$java_path/bin:$PATH
+    export PATH="$JAVA_HOME/bin:$PATH"
 fi
-local java_path="/opt/homebrew/opt/openjdk/bin"
+local java_path="/opt/homebrew/opt/openjdk"
 if [ -d "$java_path" ]; then
     export JAVA_HOME="$java_path"
-    export PATH=$java_path/bin:$PATH
-fi
-local java_path="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-if [ -d "$java_path" ]; then
-    export JAVA_HOME="$java_path"
-    export PATH=$java_path/bin:$PATH
+    export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
 # clip.exe
