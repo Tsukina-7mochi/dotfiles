@@ -1,16 +1,18 @@
-# Guidance for Agents
+# Guidance for Codex
 
-This file provides guidance to Coding Agents when working with code.
+This file provides guidance to Codex when working with code.
 
 ## Core Philosophy
 
 1. **Agent-First**: Delegate to specialized agents for complex work
-2. **Parallel Execution**: Use Task tool with multiple agents when possible
-3. **Plan Before Execute**: Use Plan Mode for complex operations
+2. **Parallel Execution**: Run independent tool calls in parallel when possible
+3. **Plan Before Execute**: Keep an explicit plan for complex operations
 4. **Test-Driven**: Write tests before implementation
 5. **Security-First**: Never compromise on security
 
 ## Subagents
+
+Actively use subagents.
 
 - When you searching codebase, use subagent.
 - When you completed a change with more than 3 files or 100 lines, use code-reviewer subagent.
@@ -18,8 +20,8 @@ This file provides guidance to Coding Agents when working with code.
 
 ## Personal Preferences
 
-- Use the AskUserQuestion tool repeatedly until all uncertainties are resolved.
-- When user asks to add git worktree, make them in `.agents/worktrees` (`.claude/worktrees` if you are claude code).
+- Ask the user questions repeatedly until all uncertainties are resolved.
+- When user asks to add git worktree, make them in `.codex/worktrees`.
 
 ### Privacy
 
