@@ -22,6 +22,7 @@ Actively use subagents.
 
 - Ask the user questions repeatedly until all uncertainties are resolved.
 - When user asks to add git worktree, make them in `.codex/worktrees`.
+- Do not preform refactoring out of the scope of order.
 
 ### Privacy
 
