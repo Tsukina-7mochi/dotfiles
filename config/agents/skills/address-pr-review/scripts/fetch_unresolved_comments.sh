@@ -9,15 +9,17 @@
 # Output: a single JSON object on stdout
 #   {
 #     "pr": { "number": int, "url": str, "title": str, "owner": str, "repo": str },
-#     "threads": [ { isOutdated, path, line, url, author, body, diffHunk, commentId } ... ],
+#     "threads": [ {
+#       isOutdated, path, line, url, author, body, diffHunk, commentId,
+#       replies: [ { url, author, body, commentId } ... ]
+#     } ... ],
 #     "reviews": [ { author, state, body, url, submittedAt } ... ]   # non-empty review bodies only
 #   }
 #
 # Notes:
 # - Only review threads with isResolved == false are emitted.
-# - Each thread is represented by its first comment (the thread root). Subsequent
-#   replies in the same thread are dropped here to keep the listing flat; the URL
-#   points to the thread so the model can fetch replies if needed.
+# - Each thread exposes its first comment (the thread root) at the top level, and
+#   any subsequent comments in the same thread under "replies" in chronological order.
 # - Requires: gh (authenticated), jq.
 
 set -euo pipefail
@@ -57,7 +59,7 @@ threads=$(gh api graphql \
               isOutdated
               path
               line
-              comments(first: 1) {
+              comments(first: 100) {
                 nodes {
                   id
                   url
@@ -84,7 +86,15 @@ threads=$(gh api graphql \
           author:     ($c.author.login // null),
           body:       ($c.body       // ""),
           diffHunk:   ($c.diffHunk   // ""),
-          commentId:  ($c.id         // null)
+          commentId:  ($c.id         // null),
+          replies: [ .comments.nodes[1:][]
+            | {
+                url:       (.url          // null),
+                author:    (.author.login // null),
+                body:      (.body         // ""),
+                commentId: (.id           // null)
+              }
+          ]
         }
     ]')
 
