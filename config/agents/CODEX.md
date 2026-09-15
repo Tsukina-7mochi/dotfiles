@@ -37,8 +37,4 @@ Actively use subagents.
 - 200-400 lines max per file.
 - Prioritize consistency and semantics.
 - Prefer nested list over tables in documentation.
-
-### Code Comments & Documentations
-
-- They must be snapshot. DO NOT write changelogs.
-- Write more is worse than write nothing. Only write when you require investigation to understand your work.
+- Do not write comments.
