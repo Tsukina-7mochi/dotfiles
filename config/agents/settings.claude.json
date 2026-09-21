@@ -3,7 +3,7 @@
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5"
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -51,6 +51,11 @@
   },
   "language": "japanese",
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "low"
+    }
+  },
   "tui": "default",
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
