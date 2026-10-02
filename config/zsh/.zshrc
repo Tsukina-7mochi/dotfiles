@@ -6,6 +6,11 @@ function source_if_exists() {
     [ -s "$1" ] && source "$1"
 }
 
+function is_human() {
+    [[ -t 0 && -t 1 ]] || return 1
+    [[ -z $CLAUDECODE$CODEX_SANDBOX$GEMINI_CLI$CURSOR_AGENT$AI_AGENT ]]
+}
+
 
 ###################
 ### PATHS & ENV ###
@@ -100,7 +105,7 @@ add_path_if_exists "/opt/homebrew/bin"
 if [ -x "$(command -v zoxide)" ]; then
     eval "$(zoxide init zsh)"
 
-	if [ -z "$CLAUDECODE" ]; then
+	if is_human; then
 		alias cd="z"
 	fi
 fi
@@ -195,7 +200,7 @@ source_if_exists "$HOME/google-cloud-sdk/completion.zsh.inc"
 # eza
 if [ -x "$(command -v eza)" ]; then
     local eza_ignore_paths="node_modules|.git|.cache"
-	if [ -z "$CLAUDECODE" ]; then
+	if is_human; then
 		alias ls='eza --git'
 		alias ll='eza --git -l'
 		alias la='eza --git -al'
@@ -207,7 +212,7 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-	if [ -z "$CLAUDECODE" ]; then
+	if is_human; then
 		alias dir='dir --color=auto'
 		alias vdir='vdir --color=auto'
 
