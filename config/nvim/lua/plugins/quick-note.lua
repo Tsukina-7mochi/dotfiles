@@ -6,11 +6,11 @@ return {
     end,
     keys = {
         {
-            "<leader>nn",
+            "<leader>mm",
             ":Note<Return>",
         },
         {
-            "<leader>ne",
+            "<leader>mo",
             ":NoteEdit<Return>",
         },
     },
