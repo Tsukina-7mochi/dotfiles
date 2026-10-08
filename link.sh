@@ -31,7 +31,6 @@ link_config agents/claude-agents "$HOME/.claude/agents"
 link_config agents/rules "$HOME/.claude/rules"
 link_config agents/skills "$HOME/.claude/skills"
 link_config agents/settings.claude.json "$HOME/.claude/settings.json"
-link_config agents/statusline.sh "$HOME/.claude/statusline.sh"
 link_config agents/notify.sh "$HOME/.claude/notify.sh"
 
 link_config agents/CODEX.md "$HOME/.agents/instructions.md"

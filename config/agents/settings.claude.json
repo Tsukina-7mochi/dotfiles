@@ -1,11 +1,6 @@
 {
   "model": "claude-opus-5-5",
   "effortLevel": "medium",
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh",
-    "padding": 2
-  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,

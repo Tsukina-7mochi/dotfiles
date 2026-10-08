@@ -1,0 +1,6 @@
+{
+  "name": "statusline",
+  "version": "0.1.0",
+  "description": "Status line: model, effort, git branch, context and rate limits",
+  "types": "./types/index.d.ts"
+}
