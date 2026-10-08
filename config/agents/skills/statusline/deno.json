@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "types": ["./.claude-plugin/types/claude-code/index.d.ts", "./types/index.d.ts"],
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment"
+  },
+  "imports": {
+    "claude-code": "./.claude-plugin/types/claude-code/index.d.ts",
+    "claude-code/testing": "./.claude-plugin/types/claude-code/index.d.ts"
+  },
+  "unstable": ["sloppy-imports"]
+}
