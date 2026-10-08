@@ -1,13 +1,12 @@
 {
-  "model": "claude-opus-5-5",
-  "effortLevel": "medium",
+  "model": "opus",
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "compact-plus@compact-plus": true
+    "compact-plus@compact-plus": true,
+    "kotlin-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "compact-plus": {
@@ -18,6 +17,7 @@
     }
   },
   "language": "japanese",
+  "effortLevel": "medium",
   "tui": "default",
   "skipWorkflowUsageWarning": true,
   "agentPushNotifEnabled": true,
