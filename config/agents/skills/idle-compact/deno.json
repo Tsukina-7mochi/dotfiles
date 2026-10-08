@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "types": ["./.claude-plugin/types/claude-code/index.d.ts"]
+  },
+  "imports": {
+    "claude-code": "./.claude-plugin/types/claude-code/index.d.ts",
+    "claude-code/testing": "./.claude-plugin/types/claude-code/index.d.ts"
+  }
+}

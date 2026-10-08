@@ -1,0 +1,1 @@
+{ "name": "idle-compact", "version": "0.1.0", "description": "Compact the conversation after 50 minutes without user input" }
