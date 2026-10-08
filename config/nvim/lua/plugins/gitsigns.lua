@@ -6,9 +6,14 @@ return {
     end,
     keys = {
         {
+            "<leader>gn",
+            ":Gitsigns next_hunk<Return>",
+            desc = "Git next hunk",
+        },
+        {
             "<leader>gb",
-            ":Gitsigns blame_line<Return>",
-            desc = "Git blame",
+            ":Gitsigns prev_hunk<Return>",
+            desc = "Git previous hunk",
         },
         {
             "<leader>gd",
@@ -19,6 +24,11 @@ return {
             "<leader>gD",
             ":Gitsigns diffthis<Return>",
             desc = "Git diff",
+        },
+        {
+            "<leader>gB",
+            ":Gitsigns blame_line<Return>",
+            desc = "Git blame",
         },
     },
 }
