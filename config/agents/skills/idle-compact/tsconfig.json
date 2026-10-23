@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["esnext"],
+    "types": [],
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "claude-code": ["./.claude-plugin/types/claude-code/index.d.ts"],
+      "claude-code/testing": ["./.claude-plugin/types/claude-code/index.d.ts"]
+    }
+  },
+  "include": ["hooks", "./.claude-plugin/types/claude-code/index.d.ts"]
+}
