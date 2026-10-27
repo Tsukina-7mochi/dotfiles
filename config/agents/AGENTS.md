@@ -12,9 +12,14 @@ This file provides guidance to coding agents when working with code.
 
 ## Subagents
 
-Actively use subagents.
+Use subagents only when it is desirable to use a new context:
 
-- When you searching codebase, use subagent.
+- When a new context is required
+  - When an objective perspective is needed, such as for reviews or proofreading
+  - When observing the behavior of a blank-slate agent that knows nothing, such as in benchmarking
+- When it is necessary to read a large amount of irrelevant data
+  - Exploring including irrelevant files in a large-scale code investigation, and then investigating only the relevant files in detail based on those results
+
 - When you completed a change with more than 3 files or 100 lines, use code-reviewer subagent.
 - When you updated security-related (auth*, security*, credential*) files, use security-auditor agent.
 
