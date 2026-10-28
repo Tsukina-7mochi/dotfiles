@@ -1,0 +1,32 @@
+#!/bin/bash
+# Records the state of a coding agent on the tmux pane it runs in
+# usage: agent-state-record <name> <running|waiting|idle|clear>
+# no -e: a failure here must not surface as a hook error in every agent
+set -uo pipefail
+
+NAME="$1"
+STATE="$2"
+
+# hooks pass event payloads on stdin, which are not needed here
+[ -t 0 ] || cat > /dev/null
+
+[ -n "${TMUX_PANE:-}" ] || exit 0
+
+if [ "$STATE" = clear ]; then
+    tmux set-option -pu -t "$TMUX_PANE" @agent_name \; \
+        set-option -pu -t "$TMUX_PANE" @agent_state \; \
+        set-option -pu -t "$TMUX_PANE" @agent_pid \; \
+        set-option -pu -t "$TMUX_PANE" @agent_updated
+    exit 0
+fi
+
+# the foreground process group of the pane is the agent itself,
+# which lets the sidebar detect agents that exited without hooks
+PANE_PID=$(tmux display-message -p -t "$TMUX_PANE" '#{pane_pid}')
+AGENT_PID=$(ps -o tpgid= -p "$PANE_PID" | tr -d ' ')
+
+tmux set-option -p -t "$TMUX_PANE" @agent_name "$NAME" \; \
+    set-option -p -t "$TMUX_PANE" @agent_state "$STATE" \; \
+    set-option -p -t "$TMUX_PANE" @agent_pid "$AGENT_PID" \; \
+    set-option -p -t "$TMUX_PANE" @agent_updated "$(date +%s)"
+exit 0

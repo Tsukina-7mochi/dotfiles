@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex idle" }] }],
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex running" }] }],
+    "PreToolUse": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex running" }] }],
+    "PostToolUse": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex running" }] }],
+    "PermissionRequest": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex waiting" }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex idle" }] }],
+    "Interrupt": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex idle" }] }],
+    "SessionEnd": [{ "hooks": [{ "type": "command", "command": "agent-state-record codex clear" }] }]
+  }
+}

@@ -21,5 +21,15 @@
   "tui": "default",
   "skipWorkflowUsageWarning": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "hooks": {
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude idle" }] }],
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude running" }] }],
+    "PreToolUse": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude running" }] }],
+    "PostToolUse": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude running" }] }],
+    "PermissionRequest": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude waiting" }] }],
+    "Notification": [{ "matcher": "idle_prompt", "hooks": [{ "type": "command", "command": "agent-state-record claude idle" }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude idle" }] }],
+    "SessionEnd": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude clear" }] }]
+  }
 }
