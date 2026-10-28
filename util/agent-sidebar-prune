@@ -1,0 +1,9 @@
+#!/bin/bash
+# Closes tmux windows where only the agent sidebar remains
+set -euo pipefail
+
+tmux list-panes -a -F '#{window_id}|#{window_panes}|#{@agent_sidebar}' | while IFS='|' read -r window panes sidebar; do
+    if [ "$panes" = 1 ] && [ "$sidebar" = 1 ]; then
+        tmux kill-window -t "$window"
+    fi
+done

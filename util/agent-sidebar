@@ -1,0 +1,90 @@
+#!/bin/bash
+# Renders the states of coding agents across all tmux panes
+set -uo pipefail
+
+INTERVAL=2
+FORMAT='#{pane_id}|#{@agent_sidebar}|#{@agent_name}|#{@agent_state}|#{@agent_pid}|#{@agent_updated}|#{session_name}:#{window_index}|#{pane_current_path}'
+
+function clear_state() {
+    tmux set-option -pu -t "$1" @agent_name \; \
+        set-option -pu -t "$1" @agent_state \; \
+        set-option -pu -t "$1" @agent_pid \; \
+        set-option -pu -t "$1" @agent_updated
+}
+
+function format_elapsed() {
+    local seconds=$1
+    if (( seconds < 60 )); then
+        echo "${seconds}s"
+    elif (( seconds < 3600 )); then
+        echo "$(( seconds / 60 ))m"
+    else
+        echo "$(( seconds / 3600 ))h"
+    fi
+}
+
+function capitalize() {
+    printf '%s%s' "$(printf '%s' "${1:0:1}" | tr '[:lower:]' '[:upper:]')" "${1:1}"
+}
+
+function render() {
+    local now width height
+    now=$(date +%s)
+    width=$(tput cols)
+    height=$(tput lines)
+
+    printf '\e[H'
+    local rows=0
+    tmux list-panes -a -F "$FORMAT" | while IFS='|' read -r pane sidebar name state pid updated location dir; do
+        if [ -n "$sidebar" ] || [ -z "$state" ]; then
+            continue
+        fi
+        # the agent exited without hooks, e.g. by a crash
+        if [ -n "$pid" ] && ! kill -0 "$pid" 2> /dev/null; then
+            clear_state "$pane"
+            continue
+        fi
+        # items are separated by a blank line
+        local gap=$(( rows > 0 ? 1 : 0 ))
+        # keep the cursor off the last row so that the pane never scrolls
+        if (( rows + gap + 2 >= height )); then
+            break
+        fi
+        rows=$(( rows + gap + 2 ))
+
+        local color elapsed
+        case "$state" in
+            running) color=33 ;;
+            waiting) color=31 ;;
+            *)       color=32 ;;
+        esac
+        elapsed=$(format_elapsed $(( now - updated )))
+
+        # one column is left blank to avoid the auto wrap at the right edge
+        local status="[$(capitalize "$state")]"
+        local label=" $(capitalize "$name")"
+        local status_width=$(( width - 2 - ${#elapsed} ))
+        if (( status_width < 0 )); then
+            status_width=0
+        fi
+        local label_width=$(( status_width - ${#status} ))
+        if (( label_width < 0 )); then
+            label_width=0
+        fi
+        if (( gap > 0 )); then
+            printf '\e[K\n'
+        fi
+        printf '%.*s\e[K\n' "$(( width > 1 ? width - 1 : 0 ))" "$location ${dir/#$HOME/~}"
+        printf '\e[%sm%.*s\e[0m%-*.*s %s\e[K\n' "$color" "$status_width" "$status" "$label_width" "$label_width" "$label" "$elapsed"
+    done
+    printf '\e[J'
+}
+
+tput civis
+trap 'tput cnorm' EXIT
+clear
+
+while true; do
+    render
+    sleep "$INTERVAL"
+done

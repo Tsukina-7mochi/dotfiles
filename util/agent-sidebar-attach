@@ -1,0 +1,26 @@
+#!/bin/bash
+# Opens the agent sidebar at the left edge of a tmux window unless it already has one
+# usage: agent-sidebar-attach [-r] <window_id>
+#   -r: reopen the sidebar even if the window already has one
+set -euo pipefail
+
+WIDTH=30
+REOPEN=0
+if [ "$1" = "-r" ]; then
+    REOPEN=1
+    shift
+fi
+WINDOW="$1"
+
+if (( REOPEN )); then
+    tmux list-panes -t "$WINDOW" -F '#{pane_id} #{@agent_sidebar}' | while read -r pane sidebar; do
+        if [ "$sidebar" = 1 ]; then
+            tmux kill-pane -t "$pane"
+        fi
+    done
+elif grep -qx 1 <<< "$(tmux list-panes -t "$WINDOW" -F '#{@agent_sidebar}')"; then
+    exit 0
+fi
+
+PANE=$(tmux split-window -hbfd -l "$WIDTH" -t "$WINDOW" -P -F '#{pane_id}' agent-sidebar)
+tmux set-option -p -t "$PANE" @agent_sidebar 1
