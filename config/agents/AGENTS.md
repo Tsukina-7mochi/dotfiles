@@ -37,12 +37,6 @@ Use subagents only when it is desirable to use a new context:
 - Always redact logs; never paste secrets (API keys/tokens/passwords/JWTs)
 - Review output before sharing - remove any sensitive data
 
-### Output Style (including codes)
-
-- No emojis and Non-ASCII signs in code, comments, or documentation.
-- Explain through structure, layout, and naming; avoid unnecessary explanations and secondary labels.
-- Prefer nested list over tables
-
 ### Code Style
 
 - Prefer immutability - make effort not to mutate objects or arrays

@@ -1,5 +1,88 @@
 {
   "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude idle"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude running"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude running"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude running"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude waiting"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude idle"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude idle"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-state-record claude clear"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
@@ -17,19 +100,11 @@
     }
   },
   "language": "japanese",
+  "outputStyle": "default",
   "effortLevel": "medium",
   "tui": "default",
   "skipWorkflowUsageWarning": true,
+  "autoCompactEnabled": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "hooks": {
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude idle" }] }],
-    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude running" }] }],
-    "PreToolUse": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude running" }] }],
-    "PostToolUse": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude running" }] }],
-    "PermissionRequest": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude waiting" }] }],
-    "Notification": [{ "matcher": "idle_prompt", "hooks": [{ "type": "command", "command": "agent-state-record claude idle" }] }],
-    "Stop": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude idle" }] }],
-    "SessionEnd": [{ "hooks": [{ "type": "command", "command": "agent-state-record claude clear" }] }]
-  }
+  "skipAutoPermissionPrompt": true
 }
