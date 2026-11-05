@@ -26,6 +26,7 @@ link_config .gitignore_global "$XDG_CONFIG_HOME/git/.gitignore"
 link_config alacritty.toml "$XDG_CONFIG_HOME/alacritty/alacritty.toml"
 link_config herdr-app/keys.json "$XDG_CONFIG_HOME/herdr-app/keys.json"
 link_config herdr-app/settings.json "$XDG_CONFIG_HOME/herdr-app/settings.json"
+link_config herdr-app/layouts/my-main.json "$XDG_CONFIG_HOME/herdr-app/layouts/my-main.json"
 link_config nvim "$XDG_CONFIG_HOME/nvim"
 
 link_config agents/AGENTS.md "$HOME/.claude/CLAUDE.md"
