@@ -11,6 +11,11 @@ return {
             desc = "Git next hunk",
         },
         {
+            "<leader>gN",
+            ":Gitsigns prev_hunk<Return>",
+            desc = "Git prev hunk",
+        },
+        {
             "<leader>gb",
             ":Gitsigns prev_hunk<Return>",
             desc = "Git previous hunk",
