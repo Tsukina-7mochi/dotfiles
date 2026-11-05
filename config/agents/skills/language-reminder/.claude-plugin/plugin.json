@@ -1,0 +1,1 @@
+{ "name": "language-reminder", "version": "0.1.0", "description": "Remind the model of settings.json language on every prompt" }
