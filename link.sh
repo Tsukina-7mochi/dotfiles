@@ -30,15 +30,12 @@ link_config herdr-app/layouts/my-main.json "$XDG_CONFIG_HOME/herdr-app/layouts/m
 link_config nvim "$XDG_CONFIG_HOME/nvim"
 
 link_config agents/AGENTS.md "$HOME/.claude/CLAUDE.md"
-link_config agents/claude-agents "$HOME/.claude/agents"
 link_config agents/rules "$HOME/.claude/rules"
 link_config agents/skills "$HOME/.claude/skills"
 link_config agents/settings.claude.json "$HOME/.claude/settings.json"
-link_config agents/notify.sh "$HOME/.claude/notify.sh"
 link_config agents/output-styles "$HOME/.claude/output-styles"
 
 link_config agents/AGENTS.md "$HOME/.agents/instructions.md"
-link_config agents/codex-agents "$HOME/.agents/agents"
 link_config agents/rules "$HOME/.agents/rules"
 link_config agents/skills "$HOME/.agents/skills"
 link_config agents/config.codex.toml "$HOME/.codex/config.toml"
