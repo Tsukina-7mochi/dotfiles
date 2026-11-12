@@ -56,7 +56,8 @@
     "cmd-alt-left": "tab.prev",
     "cmd-alt-right": "tab.next",
     "cmd-alt-up": "space.prev",
-    "cmd-alt-down": "space.next"
+    "cmd-alt-down": "space.next",
+    "cmd-shift-z": "pane.zoom"
   },
   "terminal": {
     "cmd-f": "terminal.search",
