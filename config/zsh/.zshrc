@@ -222,6 +222,9 @@ if [ -x /usr/bin/dircolors ]; then
 	fi
 fi
 
+# Claude
+alias claude="claude --append-system-prompt-file ~/.claude/system-prompt.txt"
+
 #################
 ### FUNCTIONS ###
 #################

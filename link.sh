@@ -34,6 +34,7 @@ link_config agents/rules "$HOME/.claude/rules"
 link_config agents/skills "$HOME/.claude/skills"
 link_config agents/settings.claude.json "$HOME/.claude/settings.json"
 link_config agents/output-styles "$HOME/.claude/output-styles"
+link_config agents/claude-system-prompt.txt "$HOME/.claude/system-prompt.txt"
 
 link_config agents/AGENTS.md "$HOME/.agents/instructions.md"
 link_config agents/rules "$HOME/.agents/rules"
