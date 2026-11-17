@@ -6,7 +6,7 @@
     "lua-lsp@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "compact-plus@compact-plus": true,
-    "kotlin-lsp@claude-plugins-official": true
+    "pstack@cursor-plugins": true
   },
   "extraKnownMarketplaces": {
     "compact-plus": {
@@ -14,10 +14,16 @@
         "source": "github",
         "repo": "u-ichi/compact-plus"
       }
+    },
+    "cursor-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "cursor/plugins"
+      }
     }
   },
-  "language": "japanese",
   "outputStyle": "default",
+  "language": "japanese",
   "effortLevel": "medium",
   "tui": "default",
   "skipWorkflowUsageWarning": true,
